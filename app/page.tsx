@@ -1,113 +1,140 @@
-import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
-export default function Home() {
+const HomePage = () => {
+  // Example feature list, adapt according to your actual features and content
+  const features = [
+    {
+      title: "Portfolio @ ₹99",
+      description:
+        "Get your professional portfolio website with unparalleled features at an unbeatable price.",
+      imageUrl:
+        "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+      details: [
+        "Secure and reliable",
+        "Admin panels for easy management",
+        "Part of a vibrant community",
+      ],
+    },
+    {
+      title: "Latest Market Trends",
+      description:
+        "Stay updated with the latest trends in the market through daily blogs and community discussions.",
+      imageUrl:
+        "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      details: [
+        "Daily blogs on new trends",
+        "Community discussions for networking",
+        "Project showcases to inspire",
+      ],
+    },
+    {
+      title: "AI-Enabled Solutions",
+      description:
+        "Leverage the power of AI for your website, from automated image compression to chat support.",
+      imageUrl:
+        "https://images.unsplash.com/photo-1551650975-d06e292adf10?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      details: [
+        "Auto image compression with quality retention",
+        "24x7 AI-powered chat support",
+        "AI-driven content suggestions",
+      ],
+    },
+    // Add more features as needed
+  ];
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className="bg-gray-900 text-white">
+      {/* Hero Section */}
+      <section
+        className="bg-cover bg-center py-36 px-4 text-center"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80')",
+        }}
+      >
+        <div>
+          <h1 className="text-5xl font-bold mb-4">
+            Your Own Website for Just ₹99
+          </h1>
+          <p className="mb-8">
+            Secure, personalized, SEO-friendly, multilingual sites with the
+            latest technology.
+          </p>
+          <>
+            <Link
+              href="/auth/register"
+              className="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Get Started
+            </Link>
+          </>
         </div>
-      </div>
+      </section>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      {/* Features Section */}
+      <section className="px-6 py-20">
+        <h2 className="text-4xl font-bold text-center mb-12">Why Choose Us?</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className="max-w-sm mx-auto rounded overflow-hidden shadow-lg bg-gray-800"
+            >
+              {/* Adjusting image container for consistent height */}
+              <div className="w-full h-56 overflow-hidden">
+                <img
+                  className="w-full h-full object-cover"
+                  src={feature.imageUrl}
+                  alt={feature.title}
+                />
+              </div>
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2">{feature.title}</div>
+                <p className="text-gray-400 text-base">{feature.description}</p>
+                <ul className="list-disc list-inside text-gray-400">
+                  {feature.details.map((detail, i) => (
+                    <li key={i}>{detail}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+      {/* Additional Section - Testimonial/Blog Highlight */}
+      <section className="bg-gray-800 py-20 text-center">
+        <h2 className="text-3xl font-bold mb-6">Hear From Our Community</h2>
+        <p className="text-lg mx-auto leading-relaxed max-w-3xl mb-8">
+          Discover the stories of success from our diverse community of
+          creators, designers, and entrepreneurs. YourFolio is not just a
+          platform; it&apos;s a launching pad for your dreams.
+        </p>
+
+        <Link
+          href="/testimonials"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+          View Testimonials
+        </Link>
+      </section>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      {/* Registration Call to Action */}
+      <section className="bg-blue-600 py-20 text-center">
+        <h2 className="text-3xl font-bold mb-6">Join Our Growing Community</h2>
+        <p className="mb-8">
+          Start building your dream website today with just ₹99. Secure, fast,
+          and tailored just for you.
+        </p>
+        <>
+          <a className="inline-block bg-white text-blue-600 font-bold py-2 px-4 rounded">
+            Register Now
+          </a>
+        </>
+      </section>
     </main>
   );
-}
+};
+
+export default HomePage;
