@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { EventHandler, useState } from "react";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -8,11 +8,13 @@ const ContactPage = () => {
     message: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Here you would typically send the data to a server or email service
     console.log("Form data submitted:", formData);
@@ -77,7 +79,7 @@ const ContactPage = () => {
             required
             value={formData.message}
             onChange={handleChange}
-            rows="4"
+            rows={4}
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
           ></textarea>
         </div>
