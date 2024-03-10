@@ -33,7 +33,7 @@ const HomePage = () => {
       description:
         "Leverage the power of AI for your website, from automated image compression to chat support.",
       imageUrl:
-        "https://images.unsplash.com/photo-1551650975-d06e292adf10?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       details: [
         "Auto image compression with quality retention",
         "24x7 AI-powered chat support",

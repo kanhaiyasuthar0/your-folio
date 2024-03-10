@@ -73,7 +73,7 @@ const mockUserData = {
       id: 9,
       title: "Outdoor Patio Ideas - Jaipur",
       thumbnail:
-        "https://images.unsplash.com/photo-1592231262903-abf7e4f5c079?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1557690756-62754e561982?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       link: "/showcase/9",
     },
     {

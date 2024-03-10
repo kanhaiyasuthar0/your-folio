@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
+import ShowCaseNavbar from "@/components/navbar/ShowcaseNavbar";
 const inter = Inter({ subsets: ["latin"] });
 
 // export const metadata: Metadata = {
@@ -44,6 +45,7 @@ export default function RootLayout({
         <body className={inter.className}>
           <header>
             <Navbar />
+            <ShowCaseNavbar />
           </header>
           <main className="min-h-96">{children}</main>
           <footer>
