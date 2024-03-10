@@ -1,8 +1,9 @@
-import { userSchema } from "@/app/api/user/register/route";
+// import { userSchema } from "@/app/api/user/register/route";
 import dbConnect from "@/database/mongodb/connections/dbConnect";
 import User from "@/database/mongodb/models/user/user.schema";
 import bcrypt from "bcryptjs";
 import z from "zod";
+import { userSchema } from "./types";
 type UserType = z.infer<typeof userSchema>;
 export async function uploadImageToCloud(
   image: any,
@@ -39,7 +40,7 @@ export const verifyPassword = async (
   return await bcrypt.compare(candidatePassword, userPassword);
 };
 
-export const createUser = async (userData: UserType) => {
+export const createUser = async (userData: any) => {
   await dbConnect();
   const newUser = await User.create(userData);
   return newUser;
