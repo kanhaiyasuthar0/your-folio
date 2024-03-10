@@ -32,9 +32,11 @@ const CheckoutForm = () => {
 
     setLoading(true);
 
-    const cardElement = elements.getElement(CardElement);
+    const cardElement = elements.getElement(CardElement)!;
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
+      //   type: "card",
+      //   card: cardElement,
       type: "card",
       card: cardElement,
     });
