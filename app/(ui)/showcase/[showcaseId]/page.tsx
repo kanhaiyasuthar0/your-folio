@@ -7,8 +7,8 @@ const showcaseData = {
     "https://images.unsplash.com/photo-1560185007-5f0bb1866cab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
     "https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&auto=format&fit=crop&w=1049&q=80",
     "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-    "https://images.unsplash.com/photo-1590608897129-79d2766b5c8e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-    "https://images.unsplash.com/photo-1588854337236-6889d631fa6b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+    "https://images.unsplash.com/photo-1584111671211-bc0c192ceb95?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+    "https://images.unsplash.com/photo-1566112718365-4c8ccbedc3d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
   ],
 
   title: "Showcase Title",

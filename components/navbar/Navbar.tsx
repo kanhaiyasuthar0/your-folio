@@ -1,10 +1,17 @@
 "use client";
-import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import {
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+  useUser,
+} from "@clerk/nextjs";
 import Link from "next/link";
 import { useState } from "react";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { isSignedIn, user } = useUser();
   return (
     <nav className="bg-gray-900 text-white shadow-lg">
       <div className="container mx-auto flex justify-between items-center p-4">
@@ -14,6 +21,13 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="hidden md:flex space-x-4">
+          {isSignedIn && user && (
+            <Link href="/admin">
+              <span className="hover:text-indigo-500 cursor-pointer">
+                Admin
+              </span>
+            </Link>
+          )}
           <Link href="/">
             <span className="hover:text-indigo-500 cursor-pointer">Home</span>
           </Link>
@@ -45,7 +59,7 @@ const Navbar = () => {
               Requirements
             </span>
           </Link>
-          <Link href="/auth/register">
+          <Link href="/admin">
             <span className="px-4 py-2 rounded bg-indigo-500 hover:bg-indigo-600 text-white cursor-pointer">
               Get Started
             </span>
@@ -89,6 +103,15 @@ const Navbar = () => {
       {/* Mobile menu */}
       <div className={`mobile-menu ${isMobileMenuOpen ? "block" : "hidden"}`}>
         <ul>
+          {isSignedIn && user && (
+            <li>
+              <Link href="/admin">
+                <span className="block text-sm px-2 py-4 hover:bg-gray-800 cursor-pointer">
+                  Admin
+                </span>
+              </Link>
+            </li>
+          )}
           <li>
             <Link href="/">
               <span className="block text-sm px-2 py-4 hover:bg-gray-800 cursor-pointer">
@@ -111,9 +134,9 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link href="/portfolio">
+            <Link href="/showcase">
               <span className="block text-sm px-2 py-4 hover:bg-gray-800 cursor-pointer">
-                Portfolio
+                Showcase
               </span>
             </Link>
           </li>
@@ -147,7 +170,7 @@ const Navbar = () => {
             </SignedIn>
           </li>
           <li>
-            <Link href="/auth/register">
+            <Link href="/admin">
               <span className="block text-sm px-2 py-4 hover:bg-gray-800 text-indigo-500 cursor-pointer">
                 Get Started
               </span>
