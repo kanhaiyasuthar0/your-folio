@@ -1,4 +1,4 @@
-import Overview from "@/components/admin/Overview";
+import Overview from "@/components/admin/OverviewPage";
 
 const AdminPanel = () => {
   return (
