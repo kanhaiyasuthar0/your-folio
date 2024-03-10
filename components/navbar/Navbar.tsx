@@ -1,3 +1,4 @@
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 
 const Navbar = () => {
@@ -41,14 +42,17 @@ const Navbar = () => {
               Requirements
             </span>
           </Link>
-          <Link href="/auth/login">
-            <span className="hover:text-indigo-500 cursor-pointer">Log In</span>
-          </Link>
           <Link href="/auth/register">
             <span className="px-4 py-2 rounded bg-indigo-500 hover:bg-indigo-600 text-white cursor-pointer">
               Get Started
             </span>
           </Link>
+          <SignedOut>
+            <SignInButton />
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </div>
         {/* Mobile menu button */}
         <div className="md:hidden flex items-center">
@@ -110,11 +114,12 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link href="/auth/login">
-              <span className="block text-sm px-2 py-4 hover:bg-gray-800 cursor-pointer">
-                Log In
-              </span>
-            </Link>
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
           </li>
           <li>
             <Link href="/auth/register">
