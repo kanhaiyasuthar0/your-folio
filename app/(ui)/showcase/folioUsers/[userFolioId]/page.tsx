@@ -1,6 +1,9 @@
-import React from "react";
+import React, { use } from "react";
 import Link from "next/link";
 import RequirementsTable from "@/components/generics/Requirements";
+import dbConnect from "@/database/mongodb/connections/dbConnect";
+import User from "@/database/mongodb/models/user/user.schema";
+import ShowCase from "@/database/mongodb/models/showcase/showcase.schema";
 
 const mockUserData = {
   name: "Jane Doe",
@@ -107,20 +110,35 @@ const mockUserData = {
   ],
 };
 
-const FolioUsersDetailPage = () => {
-  const { name, bio, profileImage, socialLinks, posts, requirements } =
-    mockUserData;
+const FolioUsersDetailPage = async ({ params }: any) => {
+  // console.log("🚀 ~ FolioUsersDetailPage ~ someData:", someData);
+  const { userFolioId } = params;
+  const { name, bio, socialLinks, posts, requirements } = mockUserData;
+
+  await dbConnect();
+  const mockUserData1 = await User.findOne({ _id: userFolioId });
+  const showcases = await ShowCase.find({ user: mockUserData1.external_id });
+  console.log("🚀 ~ FolioUsersDetailPage ~ mockUserData1:", mockUserData1);
+  const {
+    all_info: {
+      image_url: profileImage,
+      first_name,
+      last_name,
+      last_active_at,
+    },
+    email,
+  } = mockUserData1;
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col md:flex-row items-center">
         <img
           src={profileImage}
-          alt={name}
+          alt={first_name}
           className="w-32 h-32 rounded-full mr-4"
         />
         <div>
-          <h1 className="text-3xl font-bold">{name}</h1>
+          <h1 className="text-3xl font-bold">{first_name + " " + last_name}</h1>
           <p className="text-gray-600">{bio}</p>
           <div className="flex mt-2">
             <a href={socialLinks.twitter} className="mr-2">
@@ -136,18 +154,18 @@ const FolioUsersDetailPage = () => {
 
       <h2 className="text-2xl font-bold mt-8">Projects</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-        {posts.map((post) => (
-          <div key={post.id} className="rounded overflow-hidden shadow-lg">
+        {showcases.map((post) => (
+          <div key={post._id} className="rounded overflow-hidden shadow-lg">
             <img
               className="w-full h-48 object-cover"
-              src={post.thumbnail}
-              alt={post.title}
+              src={post.images[0]}
+              alt={post.projectName}
             />
             <div className="px-6 py-4">
-              <div className="font-bold text-xl mb-2">{post.title}</div>
+              <div className="font-bold text-xl mb-2">{post.projectName}</div>
               <>
                 <Link
-                  href={post.link}
+                  href={`/showcase/${post._id}`}
                   className="text-indigo-600 hover:text-indigo-400"
                 >
                   View Project

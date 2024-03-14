@@ -23,10 +23,20 @@ export const GET = async (request: Request) => {
 export const POST = async (request: Request) => {
   try {
     const bodyData = await request.json();
-    const parsedBody = userSchema.safeParse(bodyData);
-    if (parsedBody.success) {
+    console.log("🚀 ~ POST ~ bodyData:", bodyData);
+    // const parsedBody = userSchema.safeParse(bodyData);
+    // console.log("🚀 ~ POST ~ parsedBody:", parsedBody);
+    let email = bodyData.data.email_addresses;
+    console.log("🚀 ~ POST ~ email:", email);
+    // return;
+    if (true) {
       // Here, parsedBody.data is of type UserType, and you can pass it directly
-      const newUser = await createUser(parsedBody.data);
+      const newUser = await createUser({
+        username: bodyData?.data.username ?? "",
+        email: email[0]["email_address"] ?? "",
+        external_id: bodyData.data.id,
+        all_info: bodyData.data,
+      });
       return NextResponse.json(
         {
           message: newUser,
@@ -35,8 +45,12 @@ export const POST = async (request: Request) => {
       );
     }
     // Handle parsing error
-    return NextResponse.json({ error: parsedBody.error }, { status: 500 });
+    return NextResponse.json(
+      { error: "something went wrong" },
+      { status: 500 }
+    );
   } catch (error) {
+    console.log(error);
     return NextResponse.json({ error: error }, { status: 500 });
   }
 };
