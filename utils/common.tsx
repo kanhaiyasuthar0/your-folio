@@ -41,9 +41,26 @@ export const verifyPassword = async (
 };
 
 export const createUser = async (userData: any) => {
+  console.log("🚀 ~ createUser ~ userData:", userData);
   await dbConnect();
-  const newUser = await User.create(userData);
-  return newUser;
+
+  try {
+    // Attempt to find and update the user, or create a new one if they don't exist
+    const user = await User.findOneAndUpdate(
+      { email: userData.email }, // Criteria to find the user
+      { $set: userData }, // Update operation
+      {
+        new: true, // Return the modified document rather than the original
+        upsert: true, // Create a new document if one doesn't exist
+      }
+    );
+
+    console.log("User upserted:", user);
+    return { user, status: user ? 200 : 201 };
+  } catch (error) {
+    console.error("Error in createUser:", error);
+    throw error; // Consider re-throwing the error or handling it as per your error handling policy
+  }
 };
 
 export const findUserByEmail = async (email: string) => {

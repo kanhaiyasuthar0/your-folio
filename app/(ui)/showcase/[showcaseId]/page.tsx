@@ -1,3 +1,6 @@
+import dbConnect from "@/database/mongodb/connections/dbConnect";
+import ShowCase from "@/database/mongodb/models/showcase/showcase.schema";
+import User from "@/database/mongodb/models/user/user.schema";
 import Link from "next/link";
 
 // Mock data for the example
@@ -116,10 +119,15 @@ const showcaseData = {
     },
   ],
 };
-const ShowCaseDetailPage = () => {
-  const { images, title, description, user, requirements, testimonials } =
-    showcaseData;
+const ShowCaseDetailPage = async ({ params }: any) => {
+  const { showcaseId } = params;
+  const { requirements, testimonials } = showcaseData;
+  await dbConnect();
+  const showCaseDetail = await ShowCase.findOne({ _id: showcaseId });
+  console.log("🚀 ~ ShowCaseDetailPage ~ showCaseDetail:", showCaseDetail);
+  const { images, description, projectName, user } = showCaseDetail;
 
+  const userData = await User.findOne({ external_id: user });
   return (
     <div className="container max-w-6xl mx-auto p-6">
       {/* Hero Section with the first image as a backdrop */}
@@ -128,14 +136,14 @@ const ShowCaseDetailPage = () => {
         style={{ backgroundImage: `url(${images[0]})` }}
       >
         <div className="bg-black bg-opacity-50 p-6 rounded-md">
-          <h1 className="text-4xl font-bold text-white mb-4">{title}</h1>
+          <h1 className="text-4xl font-bold text-white mb-4">{projectName}</h1>
           <p className="text-xl text-gray-200">{description}</p>
         </div>
       </div>
 
       {/* Grid Display for Additional Images */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-        {images.slice(1).map((image, index) => (
+        {images?.slice(1).map((image: string, index: number) => (
           <div key={index} className="overflow-hidden rounded-lg shadow-lg">
             <img
               src={image}
@@ -149,11 +157,11 @@ const ShowCaseDetailPage = () => {
       {/* User Details */}
       <div className="mb-8">
         <h2 className="text-2xl font-semibold mb-2">Creator Information</h2>
-        <p className="mb-4">{user.name}</p>
+        <p className="mb-4">{user?.name}</p>
         <div className="flex gap-4">
           <>
             <Link
-              href={user.socialMedia.twitter}
+              href={user?.socialMedia?.twitter ?? ""}
               className="text-blue-500 hover:underline"
             >
               Twitter
@@ -161,7 +169,7 @@ const ShowCaseDetailPage = () => {
           </>
           <>
             <Link
-              href={user.socialMedia.linkedin}
+              href={user?.socialMedia?.linkedin ?? ""}
               className="text-blue-500 hover:underline"
             >
               LinkedIn
@@ -169,7 +177,7 @@ const ShowCaseDetailPage = () => {
           </>
           <>
             <Link
-              href={user.socialMedia.github}
+              href={user?.socialMedia?.github ?? ""}
               className="text-blue-500 hover:underline"
             >
               GitHub
@@ -225,7 +233,7 @@ const ShowCaseDetailPage = () => {
       <div className="text-center">
         <>
           <Link
-            href={`/showcase/folioUsers/${user.id}`}
+            href={`/showcase/folioUsers/${userData._id}`}
             className="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg"
           >
             More from this creator

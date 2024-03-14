@@ -24,7 +24,9 @@ async function dbConnect(): Promise<void> {
   }
 
   try {
-    const db = await mongoose.connect(myMongoUri);
+    const db = await mongoose.connect(myMongoUri, {
+      serverSelectionTimeoutMS: 30000, // Increase the server selection timeout
+    });
     connection.isConnected = db.connections[0].readyState;
   } catch (error) {
     console.error("Database connection error:", error);

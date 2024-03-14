@@ -17,7 +17,7 @@ const AdminHomePage = () => {
           </>
           <>
             <Link
-              href="/admin/folio-management"
+              href="/admin/folio"
               className="text-lg font-medium text-gray-900 hover:bg-gray-100 p-2 rounded"
             >
               Folio Management
@@ -25,7 +25,7 @@ const AdminHomePage = () => {
           </>
           <>
             <Link
-              href="/admin/account-management"
+              href="/admin/account"
               className="text-lg font-medium text-gray-900 hover:bg-gray-100 p-2 rounded"
             >
               Account Management
