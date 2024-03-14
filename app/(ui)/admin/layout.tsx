@@ -43,7 +43,7 @@ export default function AdminPageLayout({
 
       <section style={{ display: "flex", justifyContent: "space-between" }}>
         <div style={{ flex: 0.5 }}>
-          <aside className="w-64 border-r bg-white">
+          <aside className="w-64 bg-white">
             <div className="flex flex-col space-y-4 p-4">
               <>
                 <Link
@@ -59,6 +59,14 @@ export default function AdminPageLayout({
                   className="text-lg font-medium text-gray-900 hover:bg-gray-100 p-2 rounded"
                 >
                   Folio Management
+                </Link>
+              </>
+              <>
+                <Link
+                  href="/admin/profile"
+                  className="text-lg font-medium text-gray-900 hover:bg-gray-100 p-2 rounded"
+                >
+                  Profile Management
                 </Link>
               </>
               <>

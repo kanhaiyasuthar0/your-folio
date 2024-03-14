@@ -1,12 +1,9 @@
+import NavbarWrapper from "@/components/admin/NavbarWrapper";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/navbar/Navbar";
-import Footer from "@/components/footer/Footer";
-import { ClerkProvider } from "@clerk/nextjs";
-import ShowCaseNavbar from "@/components/navbar/ShowcaseNavbar";
-import AdminProfile from "@/database/mongodb/models/user/admin.schema";
-import NavbarWrapper from "@/components/admin/NavbarWrapper";
+import Link from "next/link";
+// import "./globals.css";
+
 const inter = Inter({ subsets: ["latin"] });
 
 // export const metadata: Metadata = {
@@ -36,26 +33,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function ShowCasePageLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: { userFolioId: string };
 }>) {
-  // console.log(params, "p123");
-  // const adminData = await AdminProfile.findOne({user : })
+  const { userFolioId } = params;
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body className={inter.className}>
-          <header>
-            <Navbar />
-          </header>
-          <main className="min-h-96">{children}</main>
-          <footer>
-            <Footer />
-          </footer>
-        </body>
-      </html>
-    </ClerkProvider>
+    <>
+      {/* <main className="min-h-96">{}</main> */}
+      <NavbarWrapper userFolioId={userFolioId} />
+      {children}
+
+      {/* <section> {} </section>
+      <section></section> */}
+    </>
   );
 }

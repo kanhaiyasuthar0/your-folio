@@ -4,6 +4,7 @@ import RequirementsTable from "@/components/generics/Requirements";
 import dbConnect from "@/database/mongodb/connections/dbConnect";
 import User from "@/database/mongodb/models/user/user.schema";
 import ShowCase from "@/database/mongodb/models/showcase/showcase.schema";
+import AdminProfile from "@/database/mongodb/models/user/admin.schema";
 
 const mockUserData = {
   name: "Jane Doe",
@@ -117,6 +118,38 @@ const FolioUsersDetailPage = async ({ params }: any) => {
 
   await dbConnect();
   const mockUserData1 = await User.findOne({ _id: userFolioId });
+  const adminProfilesWithUserDetails = await AdminProfile.findOne({
+    user: mockUserData1.external_id,
+  });
+  // const adminProfilesWithUserDetails: any = await AdminProfile.aggregate([
+  //   {
+  //     $lookup: {
+  //       from: "users", // Assumes your User collection is named 'users'
+  //       let: { userExternalId: "$user" }, // Define a variable for use in the pipeline
+  //       pipeline: [
+  //         {
+  //           $match: {
+  //             $expr: {
+  //               $eq: ["$external_id", "$$userExternalId"], // Use the variable here
+  //             },
+  //           },
+  //         },
+  //       ],
+  //       as: "userDetails",
+  //     },
+  //   },
+  //   {
+  //     $unwind: "$userDetails", // Optional, if you're sure there's only one matching User per AdminProfile
+  //   },
+  // ]);
+
+  console.log(
+    "🚀 ~ FolioUsersDetailPage ~ adminProfilesWithUserDetails:",
+    adminProfilesWithUserDetails
+  );
+
+  // const mockUserData1 = adminProfilesWithUserDetails[0].userDetails;
+
   const showcases = await ShowCase.find({ user: mockUserData1.external_id });
   console.log("🚀 ~ FolioUsersDetailPage ~ mockUserData1:", mockUserData1);
   const {
@@ -129,6 +162,19 @@ const FolioUsersDetailPage = async ({ params }: any) => {
     email,
   } = mockUserData1;
 
+  const {
+    profilePicture,
+    displayName,
+    personalDescription,
+    companyName,
+    companyDescription,
+    socialAccounts,
+    emailAddress,
+    mobileNumber,
+    youtubeVideoUrl,
+    // Add other fields as needed
+  } = adminProfilesWithUserDetails;
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col md:flex-row items-center">
@@ -139,15 +185,15 @@ const FolioUsersDetailPage = async ({ params }: any) => {
         />
         <div>
           <h1 className="text-3xl font-bold">{first_name + " " + last_name}</h1>
-          <p className="text-gray-600">{bio}</p>
+          <p className="text-gray-600">{companyDescription}</p>
           <div className="flex mt-2">
-            <a href={socialLinks.twitter} className="mr-2">
+            <a href={socialAccounts?.twitter} className="mr-2">
               Twitter
             </a>
-            <a href={socialLinks.linkedin} className="mr-2">
+            <a href={socialAccounts?.linkedin} className="mr-2">
               LinkedIn
             </a>
-            <a href={socialLinks.github}>GitHub</a>
+            <a href={socialAccounts?.github}>GitHub</a>
           </div>
         </div>
       </div>

@@ -1,18 +1,32 @@
-"use client";
+// "use client";
 // import { useRouter } from "next/router";
+import AdminProfile from "@/database/mongodb/models/user/admin.schema";
+import User from "@/database/mongodb/models/user/user.schema";
+import { currentUser } from "@clerk/nextjs/server";
+import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/router";
 
-const ShowCaseNavbar = () => {
-  const pathname = usePathname();
+const ShowCaseNavbar = async ({ userFolioId }: { userFolioId: string }) => {
+  console.log("🚀 ~ ShowCaseNavbar4 ~ userFolioId:", userFolioId);
+  // console.log("🚀 ~ ShowCaseNavbar1 ~ params:", params);
+  // const user = await currentUser();
+
+  const userData = await User.findOne({ _id: userFolioId });
+  const adminData = await AdminProfile.findOne({ user: userData.external_id });
+  // console.log("🚀 ~ ShowCaseNavbar ~ user:", adminData);
+  // const pathname = usePathname();
+  // console.log("🚀 ~ ShowCaseNavbar ~ pathname:", pathname);
 
   //   // Check if the current path starts with /showcase/something
-  const shouldShowChildNavbar = pathname.startsWith("/showcase/folioUsers/");
+  // const shouldShowChildNavbar = pathname.startsWith("/showcase/folioUsers/");
 
-  if (!shouldShowChildNavbar) {
-    return null; // Don't render the child navbar if not in /showcase/something
-  }
+  // if (!shouldShowChildNavbar) {
+  //   return null; // Don't render the child navbar if not in /showcase/something
+  // }
+  // useEffect(() => {
+  //   "use server";
+
+  // }, []);
 
   return (
     <nav className="bg-blue-900 text-white shadow-md">
@@ -20,8 +34,25 @@ const ShowCaseNavbar = () => {
         {/* Logo/Brand name on the left */}
         <div>
           <>
-            <Link href="/" className="text-xl font-bold cursor-pointer">
-              Shri Dev Krupa
+            <Link
+              href={`/showcase/folioUsers/${userFolioId}`}
+              className="text-xl font-bold cursor-pointer"
+            >
+              {adminData.profilePicture ? (
+                <span
+                  style={{ display: "flex", alignItems: "center", gap: "20px" }}
+                >
+                  <Image
+                    src={adminData.profilePicture}
+                    height={50}
+                    width={50}
+                    alt={adminData?.companyName}
+                  />
+                  {adminData?.companyName}
+                </span>
+              ) : (
+                adminData?.companyName
+              )}
             </Link>
           </>
         </div>
