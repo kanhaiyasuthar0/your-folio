@@ -1,5 +1,8 @@
 // "use client";
 import { submitFolio } from "@/actions/submitFolio.action";
+import { currentUser } from "@clerk/nextjs/server";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 import React, { FormEvent } from "react";
 
@@ -7,6 +10,10 @@ const AddFolio = async () => {
   async function submitAction(formData: FormData) {
     "use server";
     await submitFolio(formData);
+    revalidatePath("/showcase");
+    // revalidatePath(`/showcase/folioUsers/`);
+    revalidatePath("/admin/folio");
+    redirect("/admin/folio");
   }
 
   return (
