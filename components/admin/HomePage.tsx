@@ -5,35 +5,6 @@ const AdminHomePage = () => {
   return (
     <div className="min-h-screen flex bg-gray-50">
       {/* Sidebar */}
-      <aside className="w-64 border-r bg-white">
-        <div className="flex flex-col space-y-4 p-4">
-          <>
-            <Link
-              href="/admin/dashboard"
-              className="text-lg font-medium text-gray-900 hover:bg-gray-100 p-2 rounded"
-            >
-              Dashboard
-            </Link>
-          </>
-          <>
-            <Link
-              href="/admin/folio"
-              className="text-lg font-medium text-gray-900 hover:bg-gray-100 p-2 rounded"
-            >
-              Folio Management
-            </Link>
-          </>
-          <>
-            <Link
-              href="/admin/account"
-              className="text-lg font-medium text-gray-900 hover:bg-gray-100 p-2 rounded"
-            >
-              Account Management
-            </Link>
-          </>
-          {/* Add more links as needed */}
-        </div>
-      </aside>
 
       {/* Main Content */}
       <main className="flex-1 p-6">

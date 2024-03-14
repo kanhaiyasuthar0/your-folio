@@ -28,9 +28,11 @@ const Navbar = () => {
               </span>
             </Link>
           )}
-          <Link href="/">
-            <span className="hover:text-indigo-500 cursor-pointer">Home</span>
-          </Link>
+          {!isSignedIn && !user && (
+            <Link href="/">
+              <span className="hover:text-indigo-500 cursor-pointer">Home</span>
+            </Link>
+          )}
           <Link href="/about">
             <span className="hover:text-indigo-500 cursor-pointer">About</span>
           </Link>
@@ -59,11 +61,13 @@ const Navbar = () => {
               Requirements
             </span>
           </Link>
-          <Link href="/admin">
-            <span className="px-4 py-2 rounded bg-indigo-500 hover:bg-indigo-600 text-white cursor-pointer">
-              Get Started
-            </span>
-          </Link>
+          {!isSignedIn && !user && (
+            <Link href="/admin">
+              <span className="px-4 py-2 rounded bg-indigo-500 hover:bg-indigo-600 text-white cursor-pointer">
+                Get Started
+              </span>
+            </Link>
+          )}
           <SignedOut>
             <SignInButton />
           </SignedOut>
