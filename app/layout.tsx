@@ -15,7 +15,11 @@ const inter = Inter({ subsets: ["latin"] });
 // };
 
 export const metadata: Metadata = {
-  title: "Your Folio",
+  title: {
+    template: "%s | Your Folio",
+    default: "Your Folio", // a default is required when creating a template
+  },
+
   description:
     "Your Folio is your gateway to showcasing creativity and professionalism through a personalized portfolio. Our platform enables artists, designers, writers, and professionals from all industries to build and share their work with a global audience. Experience the simplicity of creating a stunning online presence, supported by our cutting-edge technology and community-driven insights.",
   openGraph: {

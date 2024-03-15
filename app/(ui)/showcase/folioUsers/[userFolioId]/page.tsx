@@ -5,6 +5,54 @@ import dbConnect from "@/database/mongodb/connections/dbConnect";
 import User from "@/database/mongodb/models/user/user.schema";
 import ShowCase from "@/database/mongodb/models/showcase/showcase.schema";
 import AdminProfile from "@/database/mongodb/models/user/admin.schema";
+import type { Metadata, ResolvingMetadata } from "next";
+
+type Props = {
+  params: { userFolioId: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  const { userFolioId } = params;
+  await dbConnect();
+  const mockUserData1 = await User.findOne({ _id: userFolioId });
+  // const adminProfilesWithUserDetails = await AdminProfile.findOne({
+  //   user: mockUserData1.external_id,
+  // });
+
+  // fetch data
+  // const product = await fetch(`https://.../${id}`).then((res) => res.json())
+
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    metadataBase: new URL(process.env.BASE_URL!),
+    title: `${mockUserData1.username} | ${mockUserData1.email}`,
+    description:
+      "Your Folio is your gateway to showcasing creativity and professionalism through a personalized portfolio. Our platform enables artists, designers, writers, and professionals from all industries to build and share their work with a global audience. Experience the simplicity of creating a stunning online presence, supported by our cutting-edge technology and community-driven insights.",
+    openGraph: {
+      type: "website",
+      url: process.env.BASE_URL,
+      title: `${mockUserData1.username} | ${mockUserData1.email}`,
+      description:
+        "Your Folio empowers professionals and creatives to build and share their portfolio with the world. Discover a community-driven platform that blends simplicity with powerful technology, designed to elevate your online presence.",
+      siteName: "Your Folio",
+      images: [
+        {
+          url: `${process.env.BASE_URL}/opengraph-image.jpg`, // Ensure to replace '/og-image.jpg' with the actual path to your preferred Open Graph image
+          width: 1200,
+          height: 630,
+          alt: "Your Folio - Elevate Your Online Presence",
+        },
+      ],
+    },
+  };
+}
 
 const mockUserData = {
   name: "Jane Doe",
@@ -163,17 +211,17 @@ const FolioUsersDetailPage = async ({ params }: any) => {
   } = mockUserData1;
 
   const {
-    profilePicture,
-    displayName,
-    personalDescription,
-    companyName,
-    companyDescription,
-    socialAccounts,
-    emailAddress,
-    mobileNumber,
-    youtubeVideoUrl,
+    profilePicture = "",
+    displayName = "",
+    personalDescription = "",
+    companyName = "",
+    companyDescription = "",
+    socialAccounts = {},
+    emailAddress = "",
+    mobileNumber = "",
+    youtubeVideoUrl = "",
     // Add other fields as needed
-  } = adminProfilesWithUserDetails;
+  } = adminProfilesWithUserDetails || {};
 
   return (
     <div className="container mx-auto px-4 py-8">

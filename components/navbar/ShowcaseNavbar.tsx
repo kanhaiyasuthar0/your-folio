@@ -12,7 +12,9 @@ const ShowCaseNavbar = async ({ userFolioId }: { userFolioId: string }) => {
   // const user = await currentUser();
 
   const userData = await User.findOne({ _id: userFolioId });
+  console.log("🚀 ~ ShowCaseNavbar ~ userData:", userData);
   const adminData = await AdminProfile.findOne({ user: userData.external_id });
+  console.log("🚀 ~ ShowCaseNavbar ~ adminData:", adminData);
   // console.log("🚀 ~ ShowCaseNavbar ~ user:", adminData);
   // const pathname = usePathname();
   // console.log("🚀 ~ ShowCaseNavbar ~ pathname:", pathname);
@@ -38,7 +40,7 @@ const ShowCaseNavbar = async ({ userFolioId }: { userFolioId: string }) => {
               href={`/showcase/folioUsers/${userFolioId}`}
               className="text-xl font-bold cursor-pointer"
             >
-              {adminData.profilePicture ? (
+              {adminData && adminData?.profilePicture ? (
                 <span
                   style={{ display: "flex", alignItems: "center", gap: "20px" }}
                 >
@@ -51,7 +53,7 @@ const ShowCaseNavbar = async ({ userFolioId }: { userFolioId: string }) => {
                   {adminData?.companyName}
                 </span>
               ) : (
-                adminData?.companyName
+                adminData?.companyName ?? "NA LOGO"
               )}
             </Link>
           </>
