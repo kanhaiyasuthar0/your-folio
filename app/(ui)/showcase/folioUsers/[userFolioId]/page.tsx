@@ -29,7 +29,7 @@ export async function generateMetadata(
 
   // optionally access and extend (rather than replace) parent metadata
   const previousImages = (await parent).openGraph?.images || [];
-
+  console.log(`${process.env.BASE_URL}/opengraph-image.jpg`, "inside metdata");
   return {
     metadataBase: new URL(process.env.BASE_URL!),
     title: `${mockUserData1.username} | ${mockUserData1.email}`,
@@ -43,12 +43,14 @@ export async function generateMetadata(
         "Your Folio empowers professionals and creatives to build and share their portfolio with the world. Discover a community-driven platform that blends simplicity with powerful technology, designed to elevate your online presence.",
       siteName: "Your Folio",
       images: [
-        {
-          url: `${process.env.BASE_URL}/opengraph-image.jpg`, // Ensure to replace '/og-image.jpg' with the actual path to your preferred Open Graph image
-          width: 1200,
-          height: 630,
-          alt: "Your Folio - Elevate Your Online Presence",
-        },
+        // {
+        //   url: `${process.env.BASE_URL}/opengraph-image.jpg`, // Ensure to replace '/og-image.jpg' with the actual path to your preferred Open Graph image
+        //   width: 1200,
+        //   height: 630,
+        //   alt: "Your Folio - Elevate Your Online Presence",
+        // },
+        `${process.env.BASE_URL}/opengraph-image.jpg`,
+        ...previousImages,
       ],
     },
   };
