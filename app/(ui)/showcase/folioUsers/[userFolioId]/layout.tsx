@@ -44,7 +44,9 @@ export default function ShowCasePageLayout({
   return (
     <>
       {/* <main className="min-h-96">{}</main> */}
+
       <NavbarWrapper userFolioId={userFolioId} />
+
       {children}
 
       {/* <section> {} </section>
