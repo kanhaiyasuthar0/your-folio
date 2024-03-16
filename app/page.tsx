@@ -1,6 +1,6 @@
 import { ImagesSliderDemo } from "@/components/generics/ImageSlider";
 import { InfiniteMovingCardsDemo } from "@/components/generics/Testimonial";
-import { Globe } from "@/components/ui/globe";
+// import { Globe } from "@/components/ui/globe";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
