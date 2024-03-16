@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     siteName: "Your Folio",
     images: [
       {
-        url: `${process.env.BASE_URL}/opengraph-image.jpg`, // Ensure to replace '/og-image.jpg' with the actual path to your preferred Open Graph image
+        url: `https://your-folio-v1.vercel.app/opengraph-image.jpg`, // Ensure to replace '/og-image.jpg' with the actual path to your preferred Open Graph image
         width: 1200,
         height: 630,
         alt: "Your Folio - Elevate Your Online Presence",
