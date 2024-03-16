@@ -12,3 +12,21 @@
 .mobile-menu.block {
   display: block; /* Shown when menu is toggled */
 }
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+  border-radius: 9999px;
+  height: 128px; /* This matches Tailwind's h-32 */
+  width: 128px; /* This matches Tailwind's w-32 */
+  border-top: 4px solid #3b82f6; /* A common Tailwind blue color approximation */
+  border-bottom: 4px solid #3b82f6;
+}
