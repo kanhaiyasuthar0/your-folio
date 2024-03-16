@@ -1,6 +1,15 @@
+import { ImagesSliderDemo } from "@/components/generics/ImageSlider";
+import { InfiniteMovingCardsDemo } from "@/components/generics/Testimonial";
+// import { Globe } from "@/components/ui/globe";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
+const images = [
+  "https://images.unsplash.com/photo-1485433592409-9018e83a1f0d?q=80&w=1814&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=3456&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1482189349482-3defd547e0e9?q=80&w=2848&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+];
 const HomePage = () => {
   // Example feature list, adapt according to your actual features and content
   const features = [
@@ -46,6 +55,13 @@ const HomePage = () => {
   return (
     <main className="bg-gray-900 text-white">
       {/* Hero Section */}
+      <section>
+        <ImagesSliderDemo />
+      </section>
+      <section>
+        <InfiniteMovingCardsDemo />
+      </section>
+
       <section
         className="bg-cover bg-center py-36 px-4 text-center"
         style={{
@@ -83,7 +99,9 @@ const HomePage = () => {
             >
               {/* Adjusting image container for consistent height */}
               <div className="w-full h-56 overflow-hidden">
-                <img
+                <Image
+                  height={1000}
+                  width={1000}
                   className="w-full h-full object-cover"
                   src={feature.imageUrl}
                   alt={feature.title}

@@ -1,9 +1,18 @@
+import { HoverEffect } from "@/components/ui/card-hover-effect";
 import dbConnect from "@/database/mongodb/connections/dbConnect";
 import User from "@/database/mongodb/models/user/user.schema";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+// import { HoverEffect } from "../ui/card-hover-effect";
 
+// export function CardHoverEffectDemo() {
+//   return (
+//     <div className="max-w-5xl mx-auto px-8">
+//       <HoverEffect items={projects} />
+//     </div>
+//   );
+// }
 // Mock data for demonstration
 // const users = [
 //   {
@@ -29,8 +38,8 @@ const FolioUsers = async () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {users.map((user, index) => (
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"> */}
+      {/* {users.map((user, index) => (
           <Link href={`/showcase/folioUsers/${user._id}`} key={user._id}>
             <div className="bg-white rounded-lg overflow-hidden shadow-lg">
               <Image
@@ -47,8 +56,9 @@ const FolioUsers = async () => {
               </div>
             </div>
           </Link>
-        ))}
-      </div>
+        ))} */}
+      <HoverEffect items={users} />
+      {/* </div> */}
     </div>
   );
 };

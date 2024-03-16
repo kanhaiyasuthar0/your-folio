@@ -16,8 +16,24 @@ const Navbar = () => {
     <nav className="bg-gray-900 text-white shadow-lg">
       <div className="container mx-auto flex justify-between items-center p-4">
         <div className="flex items-center">
-          <Link href="/">
-            <span className="text-xl font-bold cursor-pointer">YourFolio</span>
+          <Link
+            href={"/"}
+            className="flex title-font font-medium items-center md:justify-start justify-center text-white"
+          >
+            {/* You can replace the SVG with your logo */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span className="ml-3 text-xl">YourFolio</span>
           </Link>
         </div>
         <div className="hidden md:flex space-x-4">

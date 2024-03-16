@@ -3,6 +3,7 @@
 import AdminProfile from "@/database/mongodb/models/user/admin.schema";
 import User from "@/database/mongodb/models/user/user.schema";
 import { currentUser } from "@clerk/nextjs/server";
+import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -30,8 +31,18 @@ const ShowCaseNavbar = async ({ userFolioId }: { userFolioId: string }) => {
 
   // }, []);
 
+  const { themeColor = "" } = adminData || {}; // Assuming themeColor is defined somewhere in your component or state
+  const someCss = `bg-[${themeColor}]`;
+  // const navClass = ;
+
   return (
-    <nav className="bg-blue-900 text-white shadow-md">
+    <nav
+      style={{ "--theme-color": themeColor } as React.CSSProperties}
+      className={clsx("text-white shadow-md", {
+        [someCss]: themeColor,
+        "bg-blue-900": !themeColor,
+      })}
+    >
       <div className="container mx-auto flex items-center justify-between py-2 px-4">
         {/* Logo/Brand name on the left */}
         <div>
@@ -53,7 +64,7 @@ const ShowCaseNavbar = async ({ userFolioId }: { userFolioId: string }) => {
                   {adminData?.companyName}
                 </span>
               ) : (
-                adminData?.companyName ?? "NA LOGO"
+                adminData?.companyName ?? ""
               )}
             </Link>
           </>

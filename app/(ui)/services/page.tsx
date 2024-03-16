@@ -1,3 +1,4 @@
+import { AnimatedPinDemo } from "@/components/generics/ThreeDPin";
 import React from "react";
 
 const Services = () => {
@@ -39,20 +40,22 @@ const Services = () => {
     <div className="container mx-auto px-4 py-8">
       <h2 className="text-3xl font-bold text-center mb-6">Our Services</h2>
       <div className="flex flex-wrap justify-center -mx-4">
-        {plans.map((plan) => (
-          <div key={plan.id} className="w-full md:w-1/2 lg:w-1/3 px-4 mb-6">
-            <div className="border rounded-lg shadow-lg p-6">
-              <h3 className="text-xl font-semibold mb-4">{plan.name}</h3>
-              <h4 className="text-lg mb-4">₹{plan.price}</h4>
-              <ul className="mb-6">
-                {plan.features.map((feature, index) => (
-                  <li key={index} className="text-sm mb-2">
-                    ✓ {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+        {plans.map((plan, index) => (
+          // <div key={plan.id} className="w-full md:w-1/2 lg:w-1/3 px-4 mb-6">
+          //   <div className="border rounded-lg shadow-lg p-6">
+          //     <h3 className="text-xl font-semibold mb-4">{plan.name}</h3>
+          //     <h4 className="text-lg mb-4">₹{plan.price}</h4>
+          //     <ul className="mb-6">
+          //       {plan.features.map((feature, index) => (
+          //         <li key={index} className="text-sm mb-2">
+          //           ✓ {feature}
+          //         </li>
+          //       ))}
+          //     </ul>
+          //   </div>
+          // </div>
+
+          <AnimatedPinDemo key={index} plan={plan} />
         ))}
       </div>
     </div>
