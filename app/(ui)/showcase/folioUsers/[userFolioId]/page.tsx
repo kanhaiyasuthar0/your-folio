@@ -49,7 +49,7 @@ export async function generateMetadata(
         //   height: 630,
         //   alt: "Your Folio - Elevate Your Online Presence",
         // },
-        `${process.env.BASE_URL}/opengraph-image.jpg`,
+        `https://your-folio-v1.vercel.app/opengraph-image.jpg`,
         ...previousImages,
       ],
     },
