@@ -40,7 +40,7 @@ const Services = () => {
     <div className="container mx-auto px-4 py-8">
       <h2 className="text-3xl font-bold text-center mb-6">Our Services</h2>
       <div className="flex flex-wrap justify-center -mx-4">
-        {plans.map((plan) => (
+        {plans.map((plan, index) => (
           // <div key={plan.id} className="w-full md:w-1/2 lg:w-1/3 px-4 mb-6">
           //   <div className="border rounded-lg shadow-lg p-6">
           //     <h3 className="text-xl font-semibold mb-4">{plan.name}</h3>
@@ -55,7 +55,7 @@ const Services = () => {
           //   </div>
           // </div>
 
-          <AnimatedPinDemo plan={plan} />
+          <AnimatedPinDemo key={index} plan={plan} />
         ))}
       </div>
     </div>
