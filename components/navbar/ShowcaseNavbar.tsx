@@ -38,7 +38,7 @@ const ShowCaseNavbar = async ({ userFolioId }: { userFolioId: string }) => {
   return (
     <nav
       style={{ "--theme-color": themeColor } as React.CSSProperties}
-      className={clsx("text-white shadow-md", {
+      className={clsx("text-white shadow-md bg-blue-900", {
         [someCss]: themeColor,
         "bg-blue-900": !themeColor,
       })}
