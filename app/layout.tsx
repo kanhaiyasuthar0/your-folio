@@ -8,7 +8,8 @@ import ShowCaseNavbar from "@/components/navbar/ShowcaseNavbar";
 import AdminProfile from "@/database/mongodb/models/user/admin.schema";
 import NavbarWrapper from "@/components/admin/NavbarWrapper";
 const inter = Inter({ subsets: ["latin"] });
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // export const metadata: Metadata = {
 //   title: "Your-Folio",
 //   description: "Your Folio App lets you showcase your real ability",
@@ -55,6 +56,7 @@ export default async function RootLayout({
             <Navbar />
           </header>
           <main className="min-h-96">{children}</main>
+          <ToastContainer />
           <footer>
             <Footer />
           </footer>

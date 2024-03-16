@@ -1,15 +1,19 @@
 import { submitProfile } from "@/actions/submitAdminProfile.action";
+import Button from "@/components/generics/Button";
 import dbConnect from "@/database/mongodb/connections/dbConnect";
 import AdminProfile from "@/database/mongodb/models/user/admin.schema";
+import User from "@/database/mongodb/models/user/user.schema";
 import { currentUser } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/dist/server/api-utils";
+import { toast } from "react-toastify";
 
 const Profile = async () => {
   const user = await currentUser();
   await dbConnect();
   const profileData = await AdminProfile.findOne({ user: user?.id });
   console.log("🚀 ~ Profile ~ profileData1:", profileData);
+  const userData = await User.findOne({ external_id: user?.id });
   //   const [formData, setFormData] = useState({
   //     companyName: "",
   //     displayName: "",
@@ -46,7 +50,8 @@ const Profile = async () => {
     "use server";
     const response = await submitProfile(formData);
     console.log("🚀 ~ handleSubmit ~ response:123", response);
-
+    // toast.success("Profile updated successfully!");
+    revalidatePath(`/showcase/folioUsers/${userData._id}`);
     // redirect("/admin")
     // Submit form logic here
   };
@@ -209,12 +214,14 @@ const Profile = async () => {
           </div>
         </div>
         <div className="flex justify-end">
-          <button
+          <Button text="Save Changes" />
+
+          {/* <button
             type="submit"
             className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            Save Changes
-          </button>
+            
+          </button> */}
         </div>
       </form>
     </div>

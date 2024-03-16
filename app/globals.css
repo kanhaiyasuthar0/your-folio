@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --theme-color: #e20855; /* Default theme color */
+}
 /* Example CSS */
 .mobile-menu {
   display: none; /* Hidden by default */

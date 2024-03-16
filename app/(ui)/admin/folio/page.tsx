@@ -5,6 +5,8 @@ import { currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
 import dbConnect from "@/database/mongodb/connections/dbConnect";
 import { formatDistanceToNow } from "date-fns";
+import Button from "@/components/generics/Button";
+import { revalidatePath } from "next/cache";
 
 const FolioItemCard = ({ data }: any) => {
   const { id, projectName, description, images, createdAt } = data;
@@ -19,7 +21,14 @@ const FolioItemCard = ({ data }: any) => {
   // Handle like and dislike actions
   // const handleLike = () => setLikes(likes + 1);
   // const handleDislike = () => setDislikes(dislikes + 1);
-
+  async function deleteFolio(formData: FormData) {
+    "use server";
+    const response = await ShowCase.deleteOne({ _id: id });
+    console.log("🚀 ~ deleteFolio ~ response:", response);
+    revalidatePath("/admin/folio");
+    revalidatePath("/showcase");
+    return "";
+  }
   return (
     <div
       key={id}
@@ -63,6 +72,10 @@ const FolioItemCard = ({ data }: any) => {
               Read more...
             </Link>
           </>
+
+          <form action={deleteFolio}>
+            <Button text="Delete" />
+          </form>
         </div>
       </div>
     </div>
