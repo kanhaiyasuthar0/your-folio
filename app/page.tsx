@@ -1,5 +1,6 @@
 import { ImagesSliderDemo } from "@/components/generics/ImageSlider";
 import { InfiniteMovingCardsDemo } from "@/components/generics/Testimonial";
+import ModernVideoComponent from "@/components/video/VideoComponent";
 // import { Globe } from "@/components/ui/globe";
 import Image from "next/image";
 import Link from "next/link";
@@ -87,7 +88,9 @@ const HomePage = () => {
           </>
         </div>
       </section>
-
+      <section>
+        <ModernVideoComponent />
+      </section>
       {/* Features Section */}
       <section className="px-6 py-20">
         <h2 className="text-4xl font-bold text-center mb-12">Why Choose Us?</h2>

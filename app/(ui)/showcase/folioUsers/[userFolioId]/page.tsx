@@ -31,7 +31,6 @@ export async function generateMetadata(
   const previousImages = (await parent).openGraph?.images || [];
   console.log(`${process.env.BASE_URL}/opengraph-image.jpg`, "inside metdata");
   return {
-    metadataBase: new URL(process.env.BASE_URL!),
     title: `${mockUserData1.username} | ${mockUserData1.email}`,
     description:
       "Your Folio is your gateway to showcasing creativity and professionalism through a personalized portfolio. Our platform enables artists, designers, writers, and professionals from all industries to build and share their work with a global audience. Experience the simplicity of creating a stunning online presence, supported by our cutting-edge technology and community-driven insights.",
@@ -49,7 +48,7 @@ export async function generateMetadata(
         //   height: 630,
         //   alt: "Your Folio - Elevate Your Online Presence",
         // },
-        `https://your-folio-v1.vercel.app/opengraph-image.jpg`,
+        `https://yourfolio.vercel.app/opengraph-image.jpg`,
         ...previousImages,
       ],
     },
