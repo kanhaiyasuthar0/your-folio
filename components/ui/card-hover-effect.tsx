@@ -15,6 +15,8 @@ export const HoverEffect = ({
     _id: string;
     all_info: {
       profile_image_url: string;
+      first_name: string;
+      last_name: string;
     };
   }[];
   className?: string;
@@ -61,7 +63,9 @@ export const HoverEffect = ({
               width={300}
               height={300}
             />
-            <CardTitle>{item.username}</CardTitle>
+            <CardTitle>
+              {item.all_info?.first_name + item.all_info?.last_name}
+            </CardTitle>
             <CardDescription>{item.email}</CardDescription>
           </Card>
         </Link>
