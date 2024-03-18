@@ -67,7 +67,7 @@ const Profile = async () => {
             Company Name
           </label>
           <input
-            defaultValue={profileData.companyName}
+            defaultValue={profileData?.companyName}
             name="companyName"
             type="text"
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
@@ -78,7 +78,7 @@ const Profile = async () => {
             Display Name
           </label>
           <input
-            defaultValue={profileData.displayName}
+            defaultValue={profileData?.displayName}
             name="displayName"
             type="text"
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
@@ -89,7 +89,7 @@ const Profile = async () => {
             Personal Description
           </label>
           <textarea
-            defaultValue={profileData.personalDescription}
+            defaultValue={profileData?.personalDescription}
             name="personalDescription"
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             rows={3}
@@ -100,7 +100,7 @@ const Profile = async () => {
             Company Description
           </label>
           <textarea
-            defaultValue={profileData.companyDescription}
+            defaultValue={profileData?.companyDescription}
             name="companyDescription"
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             rows={3}
@@ -111,7 +111,7 @@ const Profile = async () => {
             Theme Color
           </label>
           <input
-            defaultValue={profileData.themeColor}
+            defaultValue={profileData?.themeColor}
             name="themeColor"
             type="color"
             className="mt-1 block w-16 border border-gray-300 rounded-md shadow-sm p-2"
@@ -122,7 +122,7 @@ const Profile = async () => {
             Company Address
           </label>
           <input
-            defaultValue={profileData.companyAddress}
+            defaultValue={profileData?.companyAddress}
             name="companyAddress"
             type="text"
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
@@ -133,7 +133,7 @@ const Profile = async () => {
             Status
           </label>
           <select
-            defaultValue={profileData.status}
+            defaultValue={profileData?.status}
             name="status"
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
           >
@@ -146,7 +146,7 @@ const Profile = async () => {
             Mobile Number
           </label>
           <input
-            defaultValue={profileData.mobileNumber}
+            defaultValue={profileData?.mobileNumber}
             name="mobileNumber"
             type="tel"
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
@@ -157,7 +157,7 @@ const Profile = async () => {
             Email Address
           </label>
           <input
-            defaultValue={profileData.emailAddress}
+            defaultValue={profileData?.emailAddress}
             name="emailAddress"
             type="email"
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
@@ -168,7 +168,7 @@ const Profile = async () => {
             YouTube Video URL
           </label>
           <input
-            defaultValue={profileData.youtubeVideoUrl}
+            defaultValue={profileData?.youtubeVideoUrl}
             name="youtubeVideoUrl"
             type="url"
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
@@ -180,21 +180,21 @@ const Profile = async () => {
               Social Accounts
             </label>
             <input
-              defaultValue={profileData.socialAccounts["facebook"]}
+              defaultValue={profileData?.socialAccounts["facebook"]}
               name="socialAccounts[facebook]"
               placeholder="Facebook URL"
               type="text"
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             />
             <input
-              defaultValue={profileData.socialAccounts["twitter"]}
+              defaultValue={profileData?.socialAccounts["twitter"]}
               name="socialAccounts[twitter]"
               placeholder="Twitter URL"
               type="text"
               className="mt-4 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             />
             <input
-              defaultValue={profileData.socialAccounts["linkedin"]}
+              defaultValue={profileData?.socialAccounts["linkedin"]}
               name="socialAccounts[linkedin]"
               placeholder="LinkedIn URL"
               type="text"
