@@ -20,7 +20,7 @@ const Navbar = () => {
             href={"/"}
             className="flex title-font font-medium items-center md:justify-start justify-center text-white"
           >
-            {/* You can replace the SVG with your logo */}
+            {/* Existing SVG Logo */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -34,6 +34,10 @@ const Navbar = () => {
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
             <span className="ml-3 text-xl">YourFolio</span>
+            {/* Powered by Sai Solutions */}
+            <span className="ml-4 text-sm text-gray-400">
+              Powered by Sai Solution
+            </span>
           </Link>
         </div>
         <div className="hidden md:flex space-x-4">
