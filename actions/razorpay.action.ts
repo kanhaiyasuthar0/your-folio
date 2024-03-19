@@ -1,6 +1,6 @@
 "use server";
 export default async function actionRazorPay(amount: number) {
-  const response = await fetch("http://localhost:3000/api/payment/razorpay", {
+  const response = await fetch("/api/payment/razorpay", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
