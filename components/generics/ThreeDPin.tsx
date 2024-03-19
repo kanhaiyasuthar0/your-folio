@@ -2,8 +2,64 @@
 import React from "react";
 import { PinContainer } from "../ui/3d-pin";
 import Link from "next/link";
+import actionRazorPay from "@/actions/razorpay.action";
+import { redirect } from "next/navigation";
 
 export function AnimatedPinDemo(props: any) {
+  const initializeRazorpay = () => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+
+      document.body.appendChild(script);
+    });
+  };
+
+  const makePayment = async () => {
+    const res = await initializeRazorpay();
+
+    if (!res) {
+      alert("Razorpay SDK Failed to load");
+      return;
+    }
+
+    // Make API call to the serverless API
+    const data = await fetch("/api/razorpay", { method: "POST" }).then((t) =>
+      t.json()
+    );
+    console.log(data);
+    var options = {
+      key: process.env.RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
+      name: "Manu Arora Pvt Ltd",
+      currency: data.currency,
+      amount: data.amount,
+      order_id: data.id,
+      description: "Thankyou for your test donation",
+      image: "https://manuarora.in/logo.png",
+      handler: function (response) {
+        // Validate payment at server - using webhooks is a better idea.
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature);
+      },
+      prefill: {
+        name: "Manu Arora",
+        email: "manuarorawork@gmail.com",
+        contact: "9999999999",
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
+
   // const handleSubmit = async (e, amount: number) => {
   //   e.preventDefault();
   //   const response = await fetch("/api/payment", {
@@ -19,12 +75,20 @@ export function AnimatedPinDemo(props: any) {
   //   // redirect(new URL(data.url));
   //   window.open(data.url);
   // };
+
+  async function handleRazorPay(formData: FormData, price: number) {
+    console.log("🚀 ~ handleRazorPay ~ formData:", formData);
+    const response = await actionRazorPay(price);
+    console.log("🚀 ~ handleRazorPay ~ response14:", response);
+    window.open(response);
+  }
   return (
-    <div
-      className="h-[35rem] flex items-center justify-center"
-      key={props.plan.name}
-    >
-      <Link href={`/payment/${props.plan.price == 99 ? "basic" : "advance"}`}>
+    <>
+      <div
+        className="h-[35rem] flex items-center justify-center"
+        key={props.plan.name}
+      >
+        {/* <Link href={`/payment/${props.plan.price == 99 ? "basic" : "advance"}`}> */}
         <PinContainer
           title={`your-folio@ ₹${props.plan.price}`}
           href="www.google.com"
@@ -43,21 +107,25 @@ export function AnimatedPinDemo(props: any) {
             ))}
 
             <div className="flex justify-center items-center w-full rounded-lg mt-4 bg-gradient-to-br from-violet-500 via-purple-500 to-blue-500 p-4">
-              {/* <form
-              onSubmit={(e) => handleSubmit(e, props.plan.price)}
-              className="w-full"
-            >
-              <button
-                className="w-full text-white font-bold py-2 px-4 rounded hover:bg-purple-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110"
-                type="submit"
+              <form
+                // onSubmit={(e) => handleSubmit(e, props.plan.price)}
+                action={(formData) =>
+                  handleRazorPay(formData, props.plan.price)
+                }
+                className="w-full"
               >
-                Subscribe for {props.plan.price}
-              </button>
-            </form> */}
+                <button
+                  className="w-full text-white font-bold py-2 px-4 rounded hover:bg-purple-700"
+                  type="submit"
+                >
+                  Subscribe for {props.plan.price}
+                </button>
+              </form>
             </div>
           </div>
         </PinContainer>
-      </Link>
-    </div>
+        {/* </Link> */}
+      </div>
+    </>
   );
 }
