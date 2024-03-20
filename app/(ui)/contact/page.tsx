@@ -100,6 +100,8 @@ const ContactPage = () => {
         </p>
         <h2 className="text-xl font-bold mb-4">Contact Number</h2>
         <p className="text-lg mb-4">Phone: 8976879231</p>
+        <h2 className="text-xl font-bold mb-4">Email</h2>
+        <p className="text-lg mb-4">kanhaiyasuthar0@gmail.com</p>
       </div>
     </div>
   );

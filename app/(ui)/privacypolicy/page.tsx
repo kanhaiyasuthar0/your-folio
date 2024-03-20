@@ -31,39 +31,32 @@ const PrivacyPolicy = () => {
             type, operating system, and pages visited.
           </li>
         </ul>
+        <h2 className="text-2xl font-bold mb-4">
+          How We Collect Your Information
+        </h2>
+        <p className="text-lg mb-8">
+          We collect personal information directly from you when you create an
+          account or interact with our website. We also collect usage data
+          automatically through cookies and similar technologies.
+        </p>
         <h2 className="text-2xl font-bold mb-4">How We Use Your Information</h2>
         <p className="text-lg mb-8">
-          To Provide and Improve Our Services: We use your information to
-          operate, maintain, and improve YourFolio, including providing
-          personalized features and content. Communication: We may use your
-          email address to send you updates, newsletters, and other
-          communications related to your account or our services. Analytics: We
-          use usage data to analyze trends, track user engagement, and improve
-          the functionality and user experience of YourFolio.
+          We use your information to provide and improve our services,
+          communicate with you, and analyze usage patterns to enhance user
+          experience.
         </p>
-        <h2 className="text-2xl font-bold mb-4">Sharing Your Information</h2>
-        <ul className="list-disc pl-8 mb-8">
-          <li>
-            With Your Consent: We may share your information with third parties
-            when you give us consent to do so, such as sharing your folios with
-            other users.
-          </li>
-          <li>
-            Service Providers: We may share your information with third-party
-            service providers who assist us in operating our website, conducting
-            our business, or servicing you.
-          </li>
-          <li>
-            Legal Compliance: We may disclose your information if required by
-            law or to protect our rights or the rights of others.
-          </li>
-        </ul>
         <h2 className="text-2xl font-bold mb-4">Data Security</h2>
         <p className="text-lg mb-8">
           We implement security measures to protect your personal information
           from unauthorized access, alteration, disclosure, or destruction.
           However, no method of transmission over the internet or electronic
-          storage is 100% secure, and we cannot guarantee absolute security.
+          storage is 100% secure.
+        </p>
+        <h2 className="text-2xl font-bold mb-4">Information Sharing</h2>
+        <p className="text-lg mb-8">
+          We do not sell or rent your personal information to third parties. We
+          may share your information with service providers or when required by
+          law.
         </p>
         <h2 className="text-2xl font-bold mb-4">Children’s Privacy</h2>
         <p className="text-lg mb-8">
@@ -86,7 +79,7 @@ const PrivacyPolicy = () => {
         <p className="text-lg mb-8">
           If you have any questions or concerns about this Privacy Policy,
           please contact us at{" "}
-          <a href="mailto:contact@email.com" className="text-blue-500">
+          <a href="mailto:kanhaiyasuthar0@gmail.com" className="text-blue-500">
             kanhaiyasuthar0@gmail.com
           </a>
           .
