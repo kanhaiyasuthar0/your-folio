@@ -4,9 +4,11 @@ const PrivacyPolicy = () => {
   return (
     <div className="bg-gray-100 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto bg-white p-8 shadow-md rounded-lg">
-        <h1 className="text-3xl font-bold mb-8">Privacy Policy for FolioHub</h1>
+        <h1 className="text-3xl font-bold mb-8">
+          Privacy Policy for YourFolio
+        </h1>
         <p className="text-lg mb-8">
-          At FolioHub, we take your privacy seriously and are committed to
+          At YourFolio, we take your privacy seriously and are committed to
           protecting the personal information of our users. This Privacy Policy
           outlines how we collect, use, disclose, and safeguard your information
           when you use our website.
@@ -14,13 +16,13 @@ const PrivacyPolicy = () => {
         <h2 className="text-2xl font-bold mb-4">Information We Collect</h2>
         <ul className="list-disc pl-8 mb-8">
           <li>
-            Personal Information: When you create an account on FolioHub, we may
-            collect personal information such as your name, email address, and
-            any other information you voluntarily provide.
+            Personal Information: When you create an account on YourFolio, we
+            may collect personal information such as your name, email address,
+            and any other information you voluntarily provide.
           </li>
           <li>
             User-Generated Content: When you post folios or share content on
-            FolioHub, we collect the information you provide, including text,
+            YourFolio, we collect the information you provide, including text,
             images, and other media.
           </li>
           <li>
@@ -32,12 +34,12 @@ const PrivacyPolicy = () => {
         <h2 className="text-2xl font-bold mb-4">How We Use Your Information</h2>
         <p className="text-lg mb-8">
           To Provide and Improve Our Services: We use your information to
-          operate, maintain, and improve FolioHub, including providing
+          operate, maintain, and improve YourFolio, including providing
           personalized features and content. Communication: We may use your
           email address to send you updates, newsletters, and other
           communications related to your account or our services. Analytics: We
           use usage data to analyze trends, track user engagement, and improve
-          the functionality and user experience of FolioHub.
+          the functionality and user experience of YourFolio.
         </p>
         <h2 className="text-2xl font-bold mb-4">Sharing Your Information</h2>
         <ul className="list-disc pl-8 mb-8">
@@ -65,7 +67,7 @@ const PrivacyPolicy = () => {
         </p>
         <h2 className="text-2xl font-bold mb-4">Children’s Privacy</h2>
         <p className="text-lg mb-8">
-          FolioHub is not intended for use by children under the age of 13. We
+          YourFolio is not intended for use by children under the age of 13. We
           do not knowingly collect personal information from children under 13.
           If you are a parent or guardian and believe that your child has
           provided us with personal information, please contact us, and we will

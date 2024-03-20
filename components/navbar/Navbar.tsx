@@ -35,9 +35,9 @@ const Navbar = () => {
             </svg>
             <span className="ml-3 text-xl">YourFolio</span>
             {/* Powered by Sai Solutions */}
-            <span className="ml-4 text-sm text-gray-400">
+            {/* <span className="ml-4 text-sm text-gray-400">
               Powered by Sai Solution
-            </span>
+            </span> */}
           </Link>
         </div>
         <div className="hidden md:flex space-x-4">
