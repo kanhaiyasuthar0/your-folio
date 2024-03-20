@@ -48,7 +48,7 @@ const Footer = () => {
           <a className="ml-3 text-gray-400" href="#">
             <i className="fab fa-github"></i>
           </a>
-          <Link className="ml-3 text-gray-400" href="/termsandconsitions">
+          <Link className="ml-3 text-gray-400" href="/termsandconditions">
             Terms and Conditions
           </Link>
           <div className="ml-5 mr-2"> | </div>
