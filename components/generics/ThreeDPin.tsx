@@ -4,6 +4,7 @@ import { PinContainer } from "../ui/3d-pin";
 import Link from "next/link";
 import actionRazorPay from "@/actions/razorpay.action";
 import { redirect } from "next/navigation";
+import Button from "./Button";
 
 export function AnimatedPinDemo(props: any) {
   // const initializeRazorpay = () => {
@@ -77,10 +78,12 @@ export function AnimatedPinDemo(props: any) {
   // };
 
   async function handleRazorPay(formData: FormData, price: number) {
-    console.log("🚀 ~ handleRazorPay ~ formData:", formData);
+    // "use server";
+    // console.log("🚀 ~ handleRazorPay ~ formData:", formData);
     const response = await actionRazorPay(price);
     console.log("🚀 ~ handleRazorPay ~ response14:", response);
-    window.open(response);
+    // window.open(response);
+    redirect(new URL(response));
   }
   return (
     <>
@@ -114,12 +117,11 @@ export function AnimatedPinDemo(props: any) {
                 }
                 className="w-full"
               >
-                <button
-                  className="w-full text-white font-bold py-2 px-4 rounded hover:bg-purple-700"
-                  type="submit"
-                >
-                  Subscribe for {props.plan.price}
-                </button>
+                <Button
+                  text={`Subscribe for ${props.plan.price}`}
+                  // className="w-full text-white font-bold py-2 px-4 rounded hover:bg-purple-700"
+                  // type="submit"
+                ></Button>
               </form>
             </div>
           </div>

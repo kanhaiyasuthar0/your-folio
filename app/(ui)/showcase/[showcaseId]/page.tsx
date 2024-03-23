@@ -1,6 +1,7 @@
 import dbConnect from "@/database/mongodb/connections/dbConnect";
 import ShowCase from "@/database/mongodb/models/showcase/showcase.schema";
 import User from "@/database/mongodb/models/user/user.schema";
+import Image from "next/image";
 import Link from "next/link";
 
 // Mock data for the example
@@ -145,7 +146,9 @@ const ShowCaseDetailPage = async ({ params }: any) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
         {images?.slice(1).map((image: string, index: number) => (
           <div key={index} className="overflow-hidden rounded-lg shadow-lg">
-            <img
+            <Image
+              height={500}
+              width={500}
               src={image}
               alt={`Showcase ${index + 2}`}
               className="w-full object-cover object-center"

@@ -1,5 +1,6 @@
 // "use client";
 // import { useRouter } from "next/router";
+import dbConnect from "@/database/mongodb/connections/dbConnect";
 import AdminProfile from "@/database/mongodb/models/user/admin.schema";
 import User from "@/database/mongodb/models/user/user.schema";
 import { currentUser } from "@clerk/nextjs/server";
@@ -11,7 +12,7 @@ const ShowCaseNavbar = async ({ userFolioId }: { userFolioId: string }) => {
   console.log("🚀 ~ ShowCaseNavbar4 ~ userFolioId:", userFolioId);
   // console.log("🚀 ~ ShowCaseNavbar1 ~ params:", params);
   // const user = await currentUser();
-
+  await dbConnect();
   const userData = await User.findOne({ _id: userFolioId });
   console.log("🚀 ~ ShowCaseNavbar ~ userData:", userData);
   const adminData = await AdminProfile.findOne({ user: userData.external_id });
@@ -74,7 +75,7 @@ const ShowCaseNavbar = async ({ userFolioId }: { userFolioId: string }) => {
         <div className="flex items-center gap-8">
           <>
             <Link
-              href="/showcase/folioUsers/userId"
+              href={`/showcase/folioUsers/${userFolioId}/about`}
               className="hover:text-blue-300 transition-colors duration-200"
             >
               About
@@ -83,7 +84,7 @@ const ShowCaseNavbar = async ({ userFolioId }: { userFolioId: string }) => {
 
           <>
             <Link
-              href="/showcase/folioUsers/userId"
+              href={`/showcase/folioUsers/${userFolioId}/profile`}
               className="hover:text-blue-300 transition-colors duration-200"
             >
               Profile
@@ -92,7 +93,7 @@ const ShowCaseNavbar = async ({ userFolioId }: { userFolioId: string }) => {
 
           <>
             <Link
-              href="/showcase/folioUsers/userId"
+              href={`/showcase/folioUsers/${userFolioId}/projects`}
               className="hover:text-blue-300 transition-colors duration-200"
             >
               Projects
@@ -101,7 +102,7 @@ const ShowCaseNavbar = async ({ userFolioId }: { userFolioId: string }) => {
 
           <>
             <Link
-              href="/showcase/folioUsers/userId"
+              href={`/showcase/folioUsers/${userFolioId}/contact`}
               className="hover:text-blue-300 transition-colors duration-200"
             >
               Contact
@@ -110,7 +111,7 @@ const ShowCaseNavbar = async ({ userFolioId }: { userFolioId: string }) => {
 
           <>
             <Link
-              href="/showcase/folioUsers/userId"
+              href={`/showcase/folioUsers/${userFolioId}/team`}
               className="hover:text-blue-300 transition-colors duration-200"
             >
               Team
