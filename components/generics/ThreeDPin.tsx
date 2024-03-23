@@ -83,7 +83,7 @@ export function AnimatedPinDemo(props: any) {
     const response = await actionRazorPay(price);
     console.log("🚀 ~ handleRazorPay ~ response14:", response);
     // window.open(response);
-    redirect(new URL(response));
+    redirect(new URL(response).toString());
   }
   return (
     <>
