@@ -1,13 +1,11 @@
+import dbConnect from "@/database/mongodb/connections/dbConnect";
+import ShowCase from "@/database/mongodb/models/showcase/showcase.schema";
+import { currentUser } from "@clerk/nextjs/server";
+import Link from "next/link";
 import React from "react";
 
-const Dashboard = () => {
+const Dashboard = async () => {
   // Dummy data for demonstration
-  const statsData = [
-    { label: "Total Portfolios", value: "1,250" },
-    { label: "Active Users", value: "950" },
-    { label: "New Sign-Ups", value: "300" },
-    { label: "Total Revenue", value: "$12,500" },
-  ];
 
   const revenueData = [
     { month: "Jan", revenue: 1000 },
@@ -20,6 +18,18 @@ const Dashboard = () => {
     { metric: "Page Views", value: "8,400" },
     { metric: "Session Duration", value: "3m 45s" },
     { metric: "Bounce Rate", value: "42%" },
+  ];
+
+  await dbConnect();
+  const user = await currentUser();
+  const counts = await ShowCase.countDocuments({ user: user?.id });
+
+  const statsData = [
+    { label: "Total folios", value: counts },
+    { label: "Team members", value: "21" },
+    { label: "Total testimonials", value: "11" },
+    { label: "Total number of images", value: "10003" },
+    { label: "Plan active", value: "Advance" },
   ];
 
   return (
@@ -44,11 +54,11 @@ const Dashboard = () => {
             {/* Revenue Chart Placeholder */}
             <div className="md:col-span-2 lg:col-span-1 p-4 bg-white rounded-lg shadow">
               <h2 className="text-lg font-semibold text-gray-700 mb-4">
-                Monthly Revenue
+                Your Quotations
               </h2>
               {/* Replace this div with your actual chart component */}
               <div className="text-center text-gray-500">
-                [Revenue Chart Placeholder]
+                <Link href={"/pdf"}>Checkout pdf</Link>
               </div>
             </div>
             {/* User Engagement Placeholder */}

@@ -4,9 +4,6 @@ import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
-import ShowCaseNavbar from "@/components/navbar/ShowcaseNavbar";
-import AdminProfile from "@/database/mongodb/models/user/admin.schema";
-import NavbarWrapper from "@/components/admin/NavbarWrapper";
 const inter = Inter({ subsets: ["latin"] });
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -55,7 +52,7 @@ export default async function RootLayout({
           <header>
             <Navbar />
           </header>
-          <main className="min-h-96">{children}</main>
+          <main className="min-h-[38vw]">{children}</main>
           <ToastContainer />
           <footer>
             <Footer />

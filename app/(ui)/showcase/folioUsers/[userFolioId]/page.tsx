@@ -6,6 +6,7 @@ import User from "@/database/mongodb/models/user/user.schema";
 import ShowCase from "@/database/mongodb/models/showcase/showcase.schema";
 import AdminProfile from "@/database/mongodb/models/user/admin.schema";
 import type { Metadata, ResolvingMetadata } from "next";
+import Image from "next/image";
 
 type Props = {
   params: { userFolioId: string };
@@ -170,35 +171,6 @@ const FolioUsersDetailPage = async ({ params }: any) => {
   const adminProfilesWithUserDetails = await AdminProfile.findOne({
     user: mockUserData1.external_id,
   });
-  // const adminProfilesWithUserDetails: any = await AdminProfile.aggregate([
-  //   {
-  //     $lookup: {
-  //       from: "users", // Assumes your User collection is named 'users'
-  //       let: { userExternalId: "$user" }, // Define a variable for use in the pipeline
-  //       pipeline: [
-  //         {
-  //           $match: {
-  //             $expr: {
-  //               $eq: ["$external_id", "$$userExternalId"], // Use the variable here
-  //             },
-  //           },
-  //         },
-  //       ],
-  //       as: "userDetails",
-  //     },
-  //   },
-  //   {
-  //     $unwind: "$userDetails", // Optional, if you're sure there's only one matching User per AdminProfile
-  //   },
-  // ]);
-
-  console.log(
-    "🚀 ~ FolioUsersDetailPage ~ adminProfilesWithUserDetails:",
-    adminProfilesWithUserDetails
-  );
-
-  // const mockUserData1 = adminProfilesWithUserDetails[0].userDetails;
-
   const showcases = await ShowCase.find({ user: mockUserData1.external_id });
   console.log("🚀 ~ FolioUsersDetailPage ~ mockUserData1:", mockUserData1);
   const {
@@ -227,7 +199,9 @@ const FolioUsersDetailPage = async ({ params }: any) => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col md:flex-row items-center">
-        <img
+        <Image
+          height={300}
+          width={300}
           src={profileImage}
           alt={first_name}
           className="w-32 h-32 rounded-full mr-4"
@@ -251,7 +225,9 @@ const FolioUsersDetailPage = async ({ params }: any) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
         {showcases.map((post) => (
           <div key={post._id} className="rounded overflow-hidden shadow-lg">
-            <img
+            <Image
+              height={500}
+              width={500}
               className="w-full h-48 object-cover"
               src={post.images[0]}
               alt={post.projectName}
@@ -271,28 +247,6 @@ const FolioUsersDetailPage = async ({ params }: any) => {
         ))}
       </div>
 
-      {/* <h2 className="text-2xl font-bold mt-8">Requirements</h2>
-      <table className="table-auto w-full mt-4">
-        <thead>
-          <tr>
-            <th className="px-4 py-2">Site</th>
-            <th className="px-4 py-2">Type</th>
-            <th className="px-4 py-2">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {requirements.map((req, index) => (
-            <tr
-              key={index}
-              className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"}`}
-            >
-              <td className="border px-4 py-2">{req.site}</td>
-              <td className="border px-4 py-2">{req.type}</td>
-              <td className="border px-4 py-2">{req.status}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
       <RequirementsTable requirements={requirements} />
     </div>
   );

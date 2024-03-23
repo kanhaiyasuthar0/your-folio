@@ -2,6 +2,14 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 // import "./globals.css";
+import { HomeIcon } from "@radix-ui/react-icons"; // Dashboard
+import { FileIcon } from "@radix-ui/react-icons"; // Projects
+import { PersonIcon } from "@radix-ui/react-icons"; // Profile
+import { RulerSquareIcon } from "@radix-ui/react-icons"; // Account Management
+import { GroupIcon } from "@radix-ui/react-icons"; // Team Management
+import { StarIcon } from "@radix-ui/react-icons"; // Testimonials
+import { GearIcon } from "@radix-ui/react-icons"; // Settings// Logout
+import Button from "@/components/generics/Button";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -43,44 +51,81 @@ export default function AdminPageLayout({
 
       <section style={{ display: "flex", justifyContent: "space-between" }}>
         <div style={{ flex: 0.5 }}>
-          <aside className="w-64 bg-white">
-            <div className="flex flex-col space-y-4 p-4">
-              <>
+          <aside className="bg-gray-800 text-white w-64 h-screen">
+            <div className="flex flex-col p-4 space-y-4">
+              <Link href={"/admin/folio/add"} className="py-4">
+                <Button text="Create folio"></Button>
+              </Link>
+              <nav>
                 <Link
                   href="/admin/dashboard"
-                  className="text-lg font-medium text-gray-900 hover:bg-gray-100 p-2 rounded"
+                  className="flex items-center p-2 text-lg font-medium text-gray-200 rounded-lg hover:bg-gray-700"
                 >
+                  <HomeIcon className="w-6 h-6 mr-3" />
                   Dashboard
                 </Link>
-              </>
-              <>
                 <Link
                   href="/admin/folio"
-                  className="text-lg font-medium text-gray-900 hover:bg-gray-100 p-2 rounded"
+                  className="flex items-center p-2 text-lg font-medium text-gray-200 rounded-lg hover:bg-gray-700"
                 >
-                  Folio Management
+                  {/* Icon for Projects */}
+                  <FileIcon className="w-6 h-6 mr-3" />
+                  Projects
                 </Link>
-              </>
-              <>
                 <Link
                   href="/admin/profile"
-                  className="text-lg font-medium text-gray-900 hover:bg-gray-100 p-2 rounded"
+                  className="flex items-center p-2 text-lg font-medium text-gray-200 rounded-lg hover:bg-gray-700"
                 >
-                  Profile Management
+                  {/* Icon for Profile */}
+                  <PersonIcon className="w-6 h-6 mr-3" />
+                  Profile
                 </Link>
-              </>
-              <>
                 <Link
                   href="/admin/account"
-                  className="text-lg font-medium text-gray-900 hover:bg-gray-100 p-2 rounded"
+                  className="flex items-center p-2 text-lg font-medium text-gray-200 rounded-lg hover:bg-gray-700"
                 >
-                  Account Management
+                  {/* Icon for Account Management */}
+                  <RulerSquareIcon className="w-6 h-6 mr-3" />
+                  Requirements
                 </Link>
-              </>
-              {/* Add more links as needed */}
+                <Link
+                  href="/admin/team"
+                  className="flex items-center p-2 text-lg font-medium text-gray-200 rounded-lg hover:bg-gray-700"
+                >
+                  {/* Icon for Team Management */}
+                  <GroupIcon className="w-6 h-6 mr-3" />
+                  Team Management
+                </Link>
+                {/* <Link
+                  href="/admin/testimonials"
+                  className="flex items-center p-2 text-lg font-medium text-gray-200 rounded-lg hover:bg-gray-700"
+                  >
+                  
+                  Testimonials
+                </Link> */}
+                {/* Additional links with icons */}
+              </nav>
+              <div className="mt-auto">
+                <Link
+                  href="/admin/settings"
+                  className="flex items-center p-2 text-lg font-medium text-gray-400 rounded-lg hover:bg-gray-700"
+                >
+                  <GearIcon className="w-6 h-6 mr-3" />
+                  {/* Icon for Settings */}
+                  Settings
+                </Link>
+                <Link
+                  href="/logout"
+                  className="flex items-center p-2 text-lg font-medium text-gray-400 rounded-lg hover:bg-gray-700"
+                >
+                  {/* Icon for Logout */}
+                  Logout
+                </Link>
+              </div>
             </div>
           </aside>
         </div>
+
         <div style={{ flex: 2 }}>{children}</div>
       </section>
       {/* <section> {} </section>

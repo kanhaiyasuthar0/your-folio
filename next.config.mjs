@@ -8,6 +8,7 @@ const nextConfig = {
       "images.clerk.dev",
       "www.gravatar.com",
       "saisolutions.vercel.app",
+      "img.clerk.com",
     ],
   },
 };
