@@ -31,77 +31,44 @@ function RequirementsHome() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
-      <section className="grid md:grid-cols-[300px_1fr] gap-6">
-        <aside className="space-y-4 p-4 bg-white rounded-lg shadow">
-          <SidebarSection title="Location Filters">
-            <input
-              className="border p-2 rounded w-full mb-2"
-              type="text"
-              placeholder="State"
-            />
-            <input
-              className="border p-2 rounded w-full mb-2"
-              type="text"
-              placeholder="District"
-            />
-            <input
-              className="border p-2 rounded w-full"
-              type="text"
-              placeholder="Pincode"
-            />
-          </SidebarSection>
-
-          <SidebarSection title="Property Type">
-            <div className="flex flex-col">
-              <label className="cursor-pointer">
-                <input type="checkbox" className="mr-2" />
-                1BHK
+      <section className="flex flex-wrap -mx-4">
+        <aside className="w-full lg:w-1/4 px-4 mb-8 lg:mb-0">
+          <div className="sticky top-0 p-4 bg-white shadow-lg rounded-lg">
+            <h2 className="text-xl font-semibold mb-4">Filters</h2>
+            <div className="mb-4">
+              <label htmlFor="search" className="sr-only">
+                Search
               </label>
-              <label className="cursor-pointer">
-                <input type="checkbox" className="mr-2" />
-                2BHK
-              </label>
-              <label className="cursor-pointer">
-                <input type="checkbox" className="mr-2" />
-                Flat
-              </label>
-              <label className="cursor-pointer">
-                <input type="checkbox" className="mr-2" />
-                Building
-              </label>
+              <input
+                type="text"
+                id="search"
+                className="w-full p-2 border border-gray-300 rounded-lg"
+                placeholder="Search..."
+              />
             </div>
-          </SidebarSection>
-
-          <SidebarSection title="Price Range">
-            {/* Implement a slider or two inputs for min and max price */}
-            <input
-              className="border p-2 rounded w-full mb-2"
-              type="number"
-              placeholder="Min Price"
-            />
-            <input
-              className="border p-2 rounded w-full"
-              type="number"
-              placeholder="Max Price"
-            />
-          </SidebarSection>
-
-          <SidebarSection title="Tags">
-            {/* Example tag inputs, could be dynamically generated */}
-            <div className="flex flex-wrap gap-2">
-              <label className="cursor-pointer">
-                <input type="checkbox" className="mr-2" />
-                Tag 1
-              </label>
-              <label className="cursor-pointer">
-                <input type="checkbox" className="mr-2" />
-                Tag 2
-              </label>
-              {/* Add more tags as needed */}
+            <div className="mb-4">
+              <h3 className="font-semibold mb-2">Date Range</h3>
+              <input
+                type="date"
+                className="w-full p-2 border border-gray-300 rounded-lg"
+              />
+              <span className="mx-2">to</span>
+              <input
+                type="date"
+                className="w-full p-2 border border-gray-300 rounded-lg"
+              />
             </div>
-          </SidebarSection>
-
-          {/* Add more filters as needed */}
+            <div className="mb-4">
+              <h3 className="font-semibold mb-2">Type</h3>
+              <select className="w-full p-2 border border-gray-300 rounded-lg">
+                <option value="">All Types</option>
+                <option value="photography">Photography</option>
+                <option value="design">Design</option>
+                <option value="art">Art</option>
+              </select>
+            </div>
+            {/* Additional filters as needed */}
+          </div>
         </aside>
 
         {/* Main content area */}
