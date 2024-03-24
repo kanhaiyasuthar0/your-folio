@@ -13,54 +13,48 @@ const ShowCaseHome = async () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-wrap -mx-4">
-        <aside className="w-full md:w-1/4 px-4 mb-4 md:mb-0">
-          {/* Sidebar content like search and filters */}
+        <aside className="w-full lg:w-1/4 px-4 mb-8 lg:mb-0">
+          <div className="sticky top-0 p-4 bg-white shadow-lg rounded-lg">
+            <h2 className="text-xl font-semibold mb-4">Filters</h2>
+            <div className="mb-4">
+              <label htmlFor="search" className="sr-only">
+                Search
+              </label>
+              <input
+                type="text"
+                id="search"
+                className="w-full p-2 border border-gray-300 rounded-lg"
+                placeholder="Search..."
+              />
+            </div>
+            <div className="mb-4">
+              <h3 className="font-semibold mb-2">Date Range</h3>
+              <input
+                type="date"
+                className="w-full p-2 border border-gray-300 rounded-lg"
+              />
+              <span className="mx-2">to</span>
+              <input
+                type="date"
+                className="w-full p-2 border border-gray-300 rounded-lg"
+              />
+            </div>
+            <div className="mb-4">
+              <h3 className="font-semibold mb-2">Type</h3>
+              <select className="w-full p-2 border border-gray-300 rounded-lg">
+                <option value="">All Types</option>
+                <option value="photography">Photography</option>
+                <option value="design">Design</option>
+                <option value="art">Art</option>
+              </select>
+            </div>
+            {/* Additional filters as needed */}
+          </div>
         </aside>
-        <main className="w-full md:w-3/4 px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <main className="w-full lg:w-3/4 px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {/* Map through showcaseItems to display content */}
             {showcaseItems.map((item) => (
-              // <div
-              //   key={item._id}
-              //   className="bg-white shadow-lg rounded-lg overflow-hidden group"
-              //   style={{ height: "100%" }}
-              // >
-              //   <div className="relative w-full h-48">
-              //     {/* Overlay to show images on hover */}
-              //     <div className="absolute inset-0 flex overflow-hidden">
-              //       {item.images.map((image, index) => (
-              //         <img
-              //           key={index}
-              //           src={image}
-              //           alt={`Image ${index + 1}`}
-              //           className="transition-opacity duration-300 opacity-0 group-hover:opacity-100"
-              //           style={{ width: `${100 / item.images.length}%` }}
-              //         />
-              //       ))}
-              //     </div>
-              //     <img
-              //       src={item.images[0]}
-              //       alt={item.projectName}
-              //       className="w-full h-full object-cover"
-              //     />
-              //   </div>
-              //   <div className="p-4">
-              //     <h3 className="font-bold text-lg mb-2">{item.projectName}</h3>
-              //     <p className="text-gray-700 mb-4">{item.description}</p>
-              //     <div className="flex justify-between items-end mt-auto">
-              //       <div className="text-sm text-gray-600">
-              //         {/* Display tags or any additional data here */}
-              //       </div>
-              //       <Link href={`/showcase/${item._id}`} passHref>
-              //         <button
-              //           aria-label="View"
-              //           className="text-blue-600 hover:text-blue-800 transition-colors duration-300"
-              //         >
-              //           View Details
-              //         </button>
-              //       </Link>
-              //     </div>
-              //   </div>
-              // </div>
               <ShowcaseCard key={item._id} item={item} />
             ))}
           </div>

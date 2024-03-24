@@ -37,28 +37,81 @@ const FolioUsers = async () => {
   const users = await User.find({});
 
   return (
+    // <div className="container mx-auto px-4 py-8">
+
+    //   <HoverEffect items={users} />
+
+    // </div>
+
     <div className="container mx-auto px-4 py-8">
-      {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"> */}
-      {/* {users.map((user, index) => (
-          <Link href={`/showcase/folioUsers/${user._id}`} key={user._id}>
-            <div className="bg-white rounded-lg overflow-hidden shadow-lg">
-              <Image
-                src={user?.all_info?.profile_image_url}
-                alt={user?.username}
-                className="w-full h-48 object-cover"
-                width={300}
-                height={300}
+      <div className="flex flex-wrap -mx-4">
+        <aside className="w-full lg:w-1/4 px-4 mb-8 lg:mb-0">
+          <div className="sticky top-0 p-4 bg-white shadow-lg rounded-lg">
+            <h2 className="text-xl font-semibold mb-4">Filters</h2>
+            <div className="mb-4">
+              <label htmlFor="search" className="sr-only">
+                Search
+              </label>
+              <input
+                type="text"
+                id="search"
+                className="w-full p-2 border border-gray-300 rounded-lg"
+                placeholder="Search..."
               />
-              <div className="p-4">
-                <h2 className="font-bold text-xl mb-2">{user.username}</h2>
-                <p className="text-gray-700 text-base">{user.email}</p>
-                <p></p>
-              </div>
             </div>
-          </Link>
-        ))} */}
-      <HoverEffect items={users} />
-      {/* </div> */}
+            <div className="mb-4">
+              <h3 className="font-semibold mb-2">Date Range</h3>
+              <input
+                type="date"
+                className="w-full p-2 border border-gray-300 rounded-lg"
+              />
+              <span className="mx-2">to</span>
+              <input
+                type="date"
+                className="w-full p-2 border border-gray-300 rounded-lg"
+              />
+            </div>
+            <div className="mb-4">
+              <h3 className="font-semibold mb-2">Type</h3>
+              <select className="w-full p-2 border border-gray-300 rounded-lg">
+                <option value="">All Types</option>
+                <option value="photography">Photography</option>
+                <option value="design">Design</option>
+                <option value="art">Art</option>
+              </select>
+            </div>
+            {/* Additional filters as needed */}
+          </div>
+        </aside>
+        <main className="w-full lg:w-3/4 px-4">
+          {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"> */}
+          {/* {users.map((user) => (
+              <div
+                key={user.id}
+                className="relative overflow-hidden bg-white shadow-lg rounded-lg group"
+              >
+                <img
+                  src={user.avatar}
+                  alt={user.name}
+                  className="w-full h-auto object-cover transform group-hover:scale-110 transition duration-300 ease-in-out"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition duration-300 ease-in-out flex justify-center items-center opacity-0 group-hover:opacity-100">
+                  <div className="text-center">
+                    <p className="text-white text-xl font-semibold">
+                      {user.name}
+                    </p>
+                    <p className="text-white text-sm">{user.profession}</p>
+                    <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 transition duration-300">
+                      View Profile
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))} */}
+          <HoverEffect items={users} />
+          {/* </div> */}
+        </main>
+      </div>
     </div>
   );
 };
