@@ -11,7 +11,7 @@ const Quotation = async () => {
   const adminData = await AdminProfile.findOne({ user: user?.id });
   console.log("🚀 ~ Quotation ~ adminData:", adminData);
 
-  const quotation = adminData.quotation;
+  const quotation = adminData?.quotation;
   console.log("🚀 ~ Quotation ~ quotation:", quotation);
   return (
     <div>
