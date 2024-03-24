@@ -88,9 +88,9 @@ const HomePage = () => {
           </>
         </div>
       </section>
-      <section>
+      {/* <section>
         <ModernVideoComponent />
-      </section>
+      </section> */}
       {/* Features Section */}
       <section className="px-6 py-20">
         <h2 className="text-4xl font-bold text-center mb-12">Why Choose Us?</h2>

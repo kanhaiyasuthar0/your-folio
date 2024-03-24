@@ -1,23 +1,16 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/navbar/Navbar";
-import Footer from "@/components/footer/Footer";
-import { ClerkProvider } from "@clerk/nextjs";
+// import Link from "next/link";
+
 const inter = Inter({ subsets: ["latin"] });
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 // export const metadata: Metadata = {
 //   title: "Your-Folio",
 //   description: "Your Folio App lets you showcase your real ability",
 // };
 
 export const metadata: Metadata = {
-  title: {
-    template: "%s | Your Folio",
-    default: "Your Folio", // a default is required when creating a template
-  },
-
+  title: "Your Folio",
   description:
     "Your Folio is your gateway to showcasing creativity and professionalism through a personalized portfolio. Our platform enables artists, designers, writers, and professionals from all industries to build and share their work with a global audience. Experience the simplicity of creating a stunning online presence, supported by our cutting-edge technology and community-driven insights.",
   openGraph: {
@@ -29,7 +22,7 @@ export const metadata: Metadata = {
     siteName: "Your Folio",
     images: [
       {
-        url: `https://yourfolio.vercel.app/opengraph-image.jpg`, // Ensure to replace '/og-image.jpg' with the actual path to your preferred Open Graph image
+        url: `${process.env.BASE_URL}/opengraph-image.jpg`, // Ensure to replace '/og-image.jpg' with the actual path to your preferred Open Graph image
         width: 1200,
         height: 630,
         alt: "Your Folio - Elevate Your Online Presence",
@@ -38,27 +31,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function DashboardPageLayout({
   children,
+  quotation,
 }: Readonly<{
   children: React.ReactNode;
+  quotation: React.ReactNode;
 }>) {
-  // console.log(params, "p123");
-  // const adminData = await AdminProfile.findOne({user : })
+  //   console.log("🚀 ~ quotation:", quotation);
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body className={inter.className}>
-          <header>
-            <Navbar />
-          </header>
-          <main className="min-h-[42vw]">{children}</main>
-          <ToastContainer />
-          <footer>
-            <Footer />
-          </footer>
-        </body>
-      </html>
-    </ClerkProvider>
+    <>
+      <div className="flex flex-col items-start align-middle">
+        {children}
+        {quotation}
+      </div>
+    </>
   );
 }

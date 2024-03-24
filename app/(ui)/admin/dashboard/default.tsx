@@ -1,4 +1,3 @@
-import CreatePdfFromTabel from "@/components/admin/CreatePdfFromTabel";
 import dbConnect from "@/database/mongodb/connections/dbConnect";
 import ShowCase from "@/database/mongodb/models/showcase/showcase.schema";
 import { currentUser } from "@clerk/nextjs/server";
@@ -80,14 +79,7 @@ const Dashboard = async () => {
               </h2>
               {/* Replace this div with your actual chart component */}
               <div className="text-center text-gray-500">
-                <Link
-                  target="_blank"
-                  href={
-                    "https://drive.google.com/file/d/16ddrpF9itQQDz_RoiFoAr8_oxBehcQKN/view?usp=sharing"
-                  }
-                >
-                  Checkout pdf
-                </Link>
+                <Link href={"/pdf"}>Checkout pdf</Link>
               </div>
             </div>
             {/* User Engagement Placeholder */}
@@ -110,8 +102,6 @@ const Dashboard = async () => {
                 [Engagement Chart Placeholder]
               </div>
             </div>
-
-            <CreatePdfFromTabel />
           </div>
         </div>
       </main>

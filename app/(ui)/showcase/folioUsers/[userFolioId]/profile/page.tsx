@@ -49,7 +49,7 @@ const page = async ({ params }: any) => {
         />
         <div>
           <h1 className="text-3xl font-bold">{first_name + " " + last_name}</h1>
-          <p className="text-gray-600">{companyDescription}</p>
+          <p className="text-gray-600">{personalDescription}</p>
           <div className="flex mt-2">
             <a href={socialAccounts?.twitter} className="mr-2">
               Twitter

@@ -11,6 +11,7 @@ const ModernVideoComponent = () => {
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
+          autoFocus={false}
         ></iframe>
       </div>
       <h2 className="text-white text-lg md:text-xl lg:text-2xl font-bold mt-4">
