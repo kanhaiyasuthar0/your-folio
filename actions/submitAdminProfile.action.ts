@@ -39,6 +39,7 @@ const adminProfileSchema = z.object({
   mobileNumber: z.string().optional(), // Could add regex validation for phone numbers
   emailAddress: z.string().email().optional(),
   youtubeVideoUrl: z.string().url().optional(), // Assuming it's a URL
+  quotation: z.string().url().optional(), // Assuming it's a URL
   socialAccounts: socialAccountsSchema,
   profilePicture: z.any().optional(), // Assuming it's a URL to the picture
 });
@@ -62,6 +63,7 @@ export const submitProfile = async (formData: FormData) => {
       mobileNumber: formData.get("mobileNumber"),
       emailAddress: formData.get("emailAddress"),
       youtubeVideoUrl: formData.get("youtubeVideoUrl"),
+      quotation: formData.get("quotation"),
       socialAccounts: {
         facebook: formData.get("socialAccounts[facebook]"),
         twitter: formData.get("socialAccounts[twitter]"),
@@ -103,6 +105,7 @@ export const submitProfile = async (formData: FormData) => {
         update,
         options
       );
+      console.log("🚀 ~ submitProfile ~ profile:", profile);
 
       // Return the saved event object
       return profile;

@@ -2,6 +2,7 @@ import dbConnect from "@/database/mongodb/connections/dbConnect";
 import ShowCase from "@/database/mongodb/models/showcase/showcase.schema";
 import AdminProfile from "@/database/mongodb/models/user/admin.schema";
 import User from "@/database/mongodb/models/user/user.schema";
+import { formatDistanceToNow } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -37,8 +38,12 @@ const folioUserProjects = async ({ params }: any) => {
                 <h3 className="font-sans text-lg font-semibold mb-4 truncate">
                   {post.projectName}
                 </h3>
+                <p className="text-gray-700 mb-4">{post.description}</p>
+                <p className="text-sm text-gray-500 mb-4">
+                  Posted {formatDistanceToNow(new Date(post.createdAt))} ago
+                </p>
                 <a
-                  href={`/showcase/${post._id}`}
+                  href={`/showcase/folioUsers/${userFolioId}/projects/${post._id}`}
                   className="inline-block mt-auto bg-blue-500 text-white py-2 px-4 rounded transition duration-300 ease-in-out hover:bg-blue-400 text-center"
                 >
                   View Project

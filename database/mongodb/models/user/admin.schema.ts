@@ -24,6 +24,7 @@ const adminProfileSchema = new Schema(
     mobileNumber: { type: String, required: false },
     emailAddress: { type: String, required: false },
     youtubeVideoUrl: { type: String, required: false },
+    quotation: { type: String, required: false },
     socialAccounts: {
       facebook: String,
       twitter: String,

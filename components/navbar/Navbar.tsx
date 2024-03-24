@@ -13,7 +13,8 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isPathMatch, setIsPathMatch] = useState(false);
   const pathname = usePathname();
-  const regex = /^\/showcase(?:\/folioUsers\/[^/]+\/.*)?$/;
+  const regex = /^\/showcase\/folioUsers\/.*$/;
+  // const regex = /^\/showcase(?:\/folioUsers\/[^/]+\/.*)?$/;
   const { isSignedIn, user } = useUser();
 
   if (!regex.test(pathname)) {

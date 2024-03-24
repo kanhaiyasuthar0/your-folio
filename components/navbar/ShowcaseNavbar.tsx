@@ -75,13 +75,12 @@ const ShowCaseNavbar = async ({ userFolioId }: { userFolioId: string }) => {
         <div className="flex items-center gap-8">
           <>
             <Link
-              href={`/showcase/folioUsers/${userFolioId}/about`}
+              href={`/showcase/folioUsers/${userFolioId}/projects`}
               className="hover:text-blue-300 transition-colors duration-200"
             >
-              About
+              Projects
             </Link>
           </>
-
           <>
             <Link
               href={`/showcase/folioUsers/${userFolioId}/profile`}
@@ -90,13 +89,12 @@ const ShowCaseNavbar = async ({ userFolioId }: { userFolioId: string }) => {
               Profile
             </Link>
           </>
-
           <>
             <Link
-              href={`/showcase/folioUsers/${userFolioId}/projects`}
+              href={`/showcase/folioUsers/${userFolioId}/about`}
               className="hover:text-blue-300 transition-colors duration-200"
             >
-              Projects
+              About
             </Link>
           </>
 
@@ -115,6 +113,14 @@ const ShowCaseNavbar = async ({ userFolioId }: { userFolioId: string }) => {
               className="hover:text-blue-300 transition-colors duration-200"
             >
               Team
+            </Link>
+          </>
+          <>
+            <Link
+              href={`/admin/dashboard`}
+              className="hover:text-blue-300 transition-colors duration-200"
+            >
+              Login
             </Link>
           </>
         </div>

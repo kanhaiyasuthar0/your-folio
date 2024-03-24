@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 // import "./globals.css";
-import { HomeIcon } from "@radix-ui/react-icons"; // Dashboard
+import { EnvelopeOpenIcon, HomeIcon, IdCardIcon } from "@radix-ui/react-icons"; // Dashboard
 import { FileIcon } from "@radix-ui/react-icons"; // Projects
 import { PersonIcon } from "@radix-ui/react-icons"; // Profile
 import { RulerSquareIcon } from "@radix-ui/react-icons"; // Account Management
@@ -81,7 +81,7 @@ export default function AdminPageLayout({
                   Profile
                 </Link>
                 <Link
-                  href="/admin/account"
+                  href="/admin/requirements"
                   className="flex items-center p-2 text-lg font-medium text-gray-200 rounded-lg hover:bg-gray-700"
                 >
                   {/* Icon for Account Management */}
@@ -89,12 +89,36 @@ export default function AdminPageLayout({
                   Requirements
                 </Link>
                 <Link
-                  href="/admin/team"
+                  href="/admin/quotation"
                   className="flex items-center p-2 text-lg font-medium text-gray-200 rounded-lg hover:bg-gray-700"
                 >
                   {/* Icon for Team Management */}
                   <GroupIcon className="w-6 h-6 mr-3" />
-                  Team Management
+                  Quotations
+                </Link>
+                <Link
+                  href="/admin/meta"
+                  className="flex items-center p-2 text-lg font-medium text-gray-200 rounded-lg hover:bg-gray-700"
+                >
+                  {/* Icon for Team Management */}
+                  <StarIcon className="w-6 h-6 mr-3" />
+                  Meta info
+                </Link>
+                <Link
+                  href="/admin/enquiries"
+                  className="flex items-center p-2 text-lg font-medium text-gray-200 rounded-lg hover:bg-gray-700"
+                >
+                  {/* Icon for Team Management */}
+                  <EnvelopeOpenIcon className="w-6 h-6 mr-3" />
+                  Enquiries
+                </Link>
+                <Link
+                  href="/admin/testimonials"
+                  className="flex items-center p-2 text-lg font-medium text-gray-200 rounded-lg hover:bg-gray-700"
+                >
+                  {/* Icon for Team Management */}
+                  <IdCardIcon className="w-6 h-6 mr-3" />
+                  Testimonials
                 </Link>
                 {/* <Link
                   href="/admin/testimonials"
@@ -105,23 +129,22 @@ export default function AdminPageLayout({
                 </Link> */}
                 {/* Additional links with icons */}
               </nav>
-              <div className="mt-auto">
+              {/* <div className="mt-auto">
                 <Link
                   href="/admin/settings"
                   className="flex items-center p-2 text-lg font-medium text-gray-400 rounded-lg hover:bg-gray-700"
                 >
                   <GearIcon className="w-6 h-6 mr-3" />
-                  {/* Icon for Settings */}
+
                   Settings
                 </Link>
                 <Link
                   href="/logout"
                   className="flex items-center p-2 text-lg font-medium text-gray-400 rounded-lg hover:bg-gray-700"
                 >
-                  {/* Icon for Logout */}
                   Logout
                 </Link>
-              </div>
+              </div> */}
             </div>
           </aside>
         </div>
