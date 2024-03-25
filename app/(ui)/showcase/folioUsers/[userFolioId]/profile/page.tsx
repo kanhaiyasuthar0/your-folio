@@ -1,4 +1,5 @@
 import BarCodeGenerator from "@/components/admin/BarCodeGenerator";
+import { BoxesCore } from "@/components/ui/background-boxes";
 import dbConnect from "@/database/mongodb/connections/dbConnect";
 import AdminProfile from "@/database/mongodb/models/user/admin.schema";
 import User from "@/database/mongodb/models/user/user.schema";
@@ -38,32 +39,46 @@ const page = async ({ params }: any) => {
     // Add other fields as needed
   } = adminProfilesWithUserDetails || {};
   return (
-    <div className="flex flex-col align-middle items-center">
-      <div className="flex flex-col md:flex-row items-center">
-        <Image
-          height={300}
-          width={300}
+    <div className="flex flex-col items-center bg-gray-50 py-10">
+      <div className="bg-white shadow-xl rounded-lg overflow-hidden md:flex p-10">
+        <img
           src={profileImage}
           alt={first_name}
-          className="w-32 h-32 rounded-full mr-4"
+          className="w-48 h-48 rounded-full mx-auto md:mx-0 md:mr-10"
         />
-        <div>
-          <h1 className="text-3xl font-bold">{first_name + " " + last_name}</h1>
-          <p className="text-gray-600">{personalDescription}</p>
-          <div className="flex mt-2">
-            <a href={socialAccounts?.twitter} className="mr-2">
-              Twitter
+        <div className="text-center md:text-left">
+          <h1 className="text-4xl font-bold text-gray-800">
+            {first_name + " " + last_name}
+          </h1>
+          <p className="text-gray-600 mt-4">{personalDescription}</p>
+          <div className="flex justify-center md:justify-start mt-4">
+            <a
+              href={socialAccounts?.twitter}
+              className="text-blue-500 hover:text-blue-600 mr-4"
+            >
+              <i className="fab fa-twitter"></i> Twitter
             </a>
-            <a href={socialAccounts?.linkedin} className="mr-2">
-              LinkedIn
+            <a
+              href={socialAccounts?.linkedin}
+              className="text-blue-700 hover:text-blue-800 mr-4"
+            >
+              <i className="fab fa-linkedin-in"></i> LinkedIn
             </a>
-            <a href={socialAccounts?.github}>GitHub</a>
+            <a
+              href={socialAccounts?.github}
+              className="text-gray-800 hover:text-black"
+            >
+              <i className="fab fa-github"></i> GitHub
+            </a>
           </div>
         </div>
       </div>
-      <BarCodeGenerator
-        url={`https://yourfolio.in/showcase/folioUsers/${userFolioId}/projects`}
-      />
+      <div className="mt-10">
+        <BarCodeGenerator
+          url={`https://yourfolio.in/showcase/folioUsers/${userFolioId}/projects`}
+          // className="shadow-xl"
+        />
+      </div>
     </div>
   );
 };

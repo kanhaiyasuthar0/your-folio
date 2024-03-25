@@ -98,9 +98,7 @@ const Dashboard = async () => {
                 ))}
               </ul>
               {/* Additional placeholder for visual engagement data */}
-              <div className="mt-4 text-center text-gray-500">
-                [Engagement Chart Placeholder]
-              </div>
+              <div className="mt-4 text-center text-gray-500"></div>
             </div>
           </div>
         </div>

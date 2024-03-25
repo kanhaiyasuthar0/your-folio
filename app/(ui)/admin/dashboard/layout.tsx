@@ -41,9 +41,9 @@ export default function DashboardPageLayout({
   //   console.log("🚀 ~ quotation:", quotation);
   return (
     <>
-      <div className="flex flex-col items-start align-middle">
+      <div className="flex flex-col items-center align-middle">
         {children}
-        {quotation}
+        {/* {quotation} */}
       </div>
     </>
   );

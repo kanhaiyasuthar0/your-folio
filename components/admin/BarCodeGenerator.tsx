@@ -26,7 +26,38 @@ const BarCodeGenerator = ({ url }: { url: string }) => {
   const qrRef = useRef(null);
 
   const downloadQRCode = () => {
-    const canvas = document.querySelector("canvas")!;
+    // Create a new canvas element
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d")!;
+
+    // Set the dimensions for the new canvas
+    canvas.width = 200; // Adjust based on your requirements
+    canvas.height = 300; // Adjust based on your requirements
+
+    // Optional: Set background color
+    ctx.fillStyle = "#FFFFFF"; // White background
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw the title
+    ctx.fillStyle = "#000000"; // Black text
+    ctx.font = "16px Arial";
+    ctx.fillText("Your YourFolio QR Code", 10, 30); // Adjust positioning as needed
+
+    // Draw the QR code
+
+    const qrCanvas = document.querySelector("canvas")!;
+    ctx.drawImage(qrCanvas, 36, 50, 128, 128); // Adjust positioning and size as needed
+
+    // Draw the description
+    ctx.font = "12px Arial";
+    ctx.fillText(
+      "Share your unique QR code to access your portfolio directly.",
+      10,
+      210,
+      180
+    ); // Adjust positioning as needed, wrap text if necessary
+
+    // Convert the canvas to an image and download it
     const image = canvas
       .toDataURL("image/png")
       .replace("image/png", "image/octet-stream");
@@ -37,6 +68,19 @@ const BarCodeGenerator = ({ url }: { url: string }) => {
     link.click();
     document.body.removeChild(link);
   };
+
+  //   const downloadQRCode = () => {
+  //     const canvas = document.querySelector("canvas")!;
+  //     const image = canvas
+  //       .toDataURL("image/png")
+  //       .replace("image/png", "image/octet-stream");
+  //     const link = document.createElement("a");
+  //     link.href = image;
+  //     link.download = "yourFolio.png";
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     document.body.removeChild(link);
+  //   };
 
   const copyToClipboard = () => {
     navigator.clipboard
