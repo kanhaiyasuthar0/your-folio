@@ -14,6 +14,7 @@ const Profile = async () => {
   const profileData = await AdminProfile.findOne({ user: user?.id });
   console.log("🚀 ~ Profile ~ profileData1:", profileData);
   const userData = await User.findOne({ external_id: user?.id });
+  console.log("🚀 ~ Profile ~ userData: profile top", userData);
   //   const [formData, setFormData] = useState({
   //     companyName: "",
   //     displayName: "",
@@ -51,6 +52,7 @@ const Profile = async () => {
     const response = await submitProfile(formData);
     console.log("🚀 ~ handleSubmit ~ response:123", response);
     // toast.success("Profile updated successfully!");
+    console.log(userData, "inhandlesubmit after");
     revalidatePath(`/showcase/folioUsers/${userData?._id}`);
     // redirect("/admin")
     // Submit form logic here
