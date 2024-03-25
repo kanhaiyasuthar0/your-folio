@@ -1,5 +1,11 @@
+import UnderConstruction from "@/components/generics/UnderConstruction";
+
 const Enquiries = () => {
-  return <div>Enquiries</div>;
+  return (
+    <div>
+      <UnderConstruction />
+    </div>
+  );
 };
 
 export default Enquiries;

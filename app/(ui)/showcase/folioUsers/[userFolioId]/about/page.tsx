@@ -19,7 +19,7 @@ const folioUserAbout = async ({ params }: any) => {
     adminProfilesWithUserDetails
   );
   const { companyName, companyDescription, mobileNumber, updatedAt } =
-    adminProfilesWithUserDetails;
+    adminProfilesWithUserDetails || {};
   return (
     <div className="max-w-4xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8">
       <div className="text-center">
@@ -35,7 +35,10 @@ const folioUserAbout = async ({ params }: any) => {
         <div className="text-lg leading-7 text-gray-600 space-y-4">
           <p>{companyDescription}</p>
           <p>Contact - {mobileNumber}</p>
-          <p>Last updated {formatDistanceToNow(new Date(updatedAt))} ago</p>
+          <p>
+            Last updated{" "}
+            {updatedAt ? formatDistanceToNow(new Date(updatedAt)) : ""} ago
+          </p>
         </div>
       </div>
     </div>

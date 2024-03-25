@@ -21,27 +21,47 @@ const ShowcaseCard = ({ item }: any) => {
 
   return (
     <div
-      className="bg-white shadow-lg rounded-lg overflow-hidden"
+      className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 ease-in-out"
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => {
         setIsHovering(false);
         setCurrentImageIndex(0); // Reset to the first image when not hovering
       }}
     >
-      <div className="w-full h-48 overflow-hidden">
+      <div className="w-full overflow-hidden" style={{ height: "12rem" }}>
+        {" "}
+        {/* Fixed image container height */}
         <img
           src={item.images[currentImageIndex]}
           alt={item.projectName}
-          className="w-full h-full object-cover transition-opacity duration-300"
+          className="w-full h-full object-cover transition-opacity duration-300 ease-in-out"
         />
       </div>
-      <div className="p-4">
-        <h3 className="font-bold text-lg mb-2">{item.projectName}</h3>
-        <p className="text-gray-700 mb-4">{item.description}</p>
+      <div
+        className="p-4 flex flex-col justify-between"
+        style={{ height: "10rem" }}
+      >
+        {" "}
+        {/* Fixed content container height */}
+        <h3 className="font-bold text-lg mb-2 truncate">
+          {item.projectName}
+        </h3>{" "}
+        {/* Truncate long titles */}
+        <p
+          className="text-gray-700 text-sm mb-4 overflow-hidden text-ellipsis"
+          style={{
+            display: "-webkit-box",
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: "vertical",
+          }}
+        >
+          {item.description}
+        </p>{" "}
+        {/* Reduced font size and clamped lines for uniform height */}
         <Link href={`/showcase/${item._id}`} passHref>
           <button
             aria-label="View"
-            className="text-blue-600 hover:text-blue-800 transition-colors duration-300"
+            className="text-blue-600 hover:text-blue-800 transition-colors duration-300 mt-auto"
           >
             View Details
           </button>

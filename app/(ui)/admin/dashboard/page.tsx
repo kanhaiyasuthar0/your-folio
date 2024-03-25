@@ -48,8 +48,8 @@ const Dashboard = async () => {
     counts.length > 0 ? counts[0] : { totalDocuments: 0, totalImages: 0 };
   const statsData = [
     { label: "Total folios", value: result.totalDocuments },
-    { label: "Team members", value: "21" },
-    { label: "Total testimonials", value: "11" },
+    { label: "Team members", value: "0" },
+    { label: "Total testimonials", value: "0" },
     { label: "Total number of images", value: result.totalImages },
     { label: "Plan active", value: "Advance" },
   ];
@@ -79,7 +79,7 @@ const Dashboard = async () => {
                 Your Quotations
               </h2>
               {/* Replace this div with your actual chart component */}
-              <div className="text-center text-gray-500">
+              <div className="text-left text-gray-500">
                 <Link
                   target="_blank"
                   href={
@@ -106,12 +106,10 @@ const Dashboard = async () => {
                 ))}
               </ul>
               {/* Additional placeholder for visual engagement data */}
-              <div className="mt-4 text-center text-gray-500">
-                [Engagement Chart Placeholder]
-              </div>
+              <div className="mt-4 text-center text-gray-500"></div>
             </div>
 
-            <CreatePdfFromTabel />
+            {/* <CreatePdfFromTabel /> */}
           </div>
         </div>
       </main>

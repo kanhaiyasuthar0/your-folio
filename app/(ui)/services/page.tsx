@@ -11,7 +11,7 @@ const Services = () => {
       features: [
         "Admin Panel",
         "Secured",
-        "8GB Storage",
+        "1000 images",
         "Community Access",
         "No Video Support",
         "No Requirements Access",
@@ -24,7 +24,7 @@ const Services = () => {
       features: [
         "Admin Panel + AI Support",
         "Secured with Advanced Protocols",
-        "20GB Storage",
+        "5000 images",
         "Community Access with Posting Rights",
         "Video Support",
         "Requirements Access",
