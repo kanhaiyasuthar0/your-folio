@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React from "react";
 import Link from "next/link";
 import RequirementsTable from "@/components/generics/Requirements";
 import dbConnect from "@/database/mongodb/connections/dbConnect";
