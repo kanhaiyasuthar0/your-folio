@@ -51,7 +51,7 @@ const Profile = async () => {
     const response = await submitProfile(formData);
     console.log("🚀 ~ handleSubmit ~ response:123", response);
     // toast.success("Profile updated successfully!");
-    revalidatePath(`/showcase/folioUsers/${userData._id}`);
+    revalidatePath(`/showcase/folioUsers/${userData?._id}`);
     // redirect("/admin")
     // Submit form logic here
   };
