@@ -30,3 +30,16 @@
   border-top: 4px solid #3b82f6; /* A common Tailwind blue color approximation */
   border-bottom: 4px solid #3b82f6;
 }
+
+/* styles/globals.css */
+@keyframes marquee-holi {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+.animate-marquee-holi {
+  animation: marquee-holi 20s linear infinite;
+}

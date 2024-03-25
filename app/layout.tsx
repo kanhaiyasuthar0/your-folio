@@ -7,6 +7,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 const inter = Inter({ subsets: ["latin"] });
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import HoliOfferBanner from "@/components/generics/HoliOfferBanner";
 // export const metadata: Metadata = {
 //   title: "Your-Folio",
 //   description: "Your Folio App lets you showcase your real ability",
@@ -50,6 +51,7 @@ export default async function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <header>
+            <HoliOfferBanner />
             <Navbar />
           </header>
           <main className="min-h-[42vw]">{children}</main>
