@@ -62,12 +62,12 @@ export const submitProfile = async (formData: FormData) => {
       status: formData.get("status"),
       mobileNumber: formData.get("mobileNumber"),
       emailAddress: formData.get("emailAddress"),
-      youtubeVideoUrl: formData.get("youtubeVideoUrl"),
-      quotation: formData.get("quotation"),
+      youtubeVideoUrl: formData.get("youtubeVideoUrl") || undefined,
+      quotation: formData.get("quotation") || undefined,
       socialAccounts: {
-        facebook: formData.get("socialAccounts[facebook]"),
-        twitter: formData.get("socialAccounts[twitter]"),
-        linkedin: formData.get("socialAccounts[linkedin]"),
+        facebook: formData.get("socialAccounts[facebook]") || undefined,
+        twitter: formData.get("socialAccounts[twitter]") || undefined,
+        linkedin: formData.get("socialAccounts[linkedin]") || undefined,
         // instagram: formData.get("social.instagram"),
         // Include other platforms as needed
       },
