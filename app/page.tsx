@@ -1,5 +1,7 @@
 import { ImagesSliderDemo } from "@/components/generics/ImageSlider";
 import { InfiniteMovingCardsDemo } from "@/components/generics/Testimonial";
+import YourFolioBenefits from "@/components/generics/YourFolioBenefits";
+import YourFolioBenefitsHindi from "@/components/generics/YourFolioBenefitsHindi";
 import ModernVideoComponent from "@/components/video/VideoComponent";
 // import { Globe } from "@/components/ui/globe";
 import Image from "next/image";
@@ -91,9 +93,15 @@ const HomePage = () => {
       {/* <section>
         <ModernVideoComponent />
       </section> */}
+      <section>
+        <YourFolioBenefits />
+      </section>
+      <section>
+        <YourFolioBenefitsHindi />
+      </section>
       {/* Features Section */}
       <section className="px-6 py-20">
-        <h2 className="text-4xl font-bold text-center mb-12">Why Choose Us?</h2>
+        <h2 className="text-4xl font-bold text-center mb-12">Highlights</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {features.map((feature, index) => (
             <div
