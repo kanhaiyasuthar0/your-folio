@@ -13,23 +13,14 @@ export async function POST(req: Request) {
     // console.log("🚀 ~ POST ~ body123:", body);
     const { amount } = body;
     console.log("🚀 ~ POST ~ amount:", amount);
-    // const response = await callPaymentPage(amount);
-    // console.log("🚀 ~ POST ~ response:", response);
     let url = "";
     if (amount == 99) {
-      url = "https://pages.razorpay.com/pl_NoA5I4JXsdNVgE/view";
+      url = "https://rzp.io/l/VoGcxqQV";
     } else if (amount == 299) {
-      url = "https://rzp.io/l/KAhPe9r8R";
+      url = "https://rzp.io/l/7WjhkcBM8";
     }
-    return NextResponse.json(
-      { url },
-
-      // new URL(response.data.data.instrumentResponse.redirectInfo.url)
-
-      // { url: "done" },
-      // { url: response.data.data.instrumentResponse.redirectInfo.url },
-      { status: 200 }
-    );
+    console.log("new amount123", amount, url);
+    return NextResponse.json({ url }, { status: 200 });
   } catch (err) {
     return NextResponse.json(
       { message: "somethingwent wrong" },

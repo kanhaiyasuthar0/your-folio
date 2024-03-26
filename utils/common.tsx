@@ -4,6 +4,8 @@ import User from "@/database/mongodb/models/user/user.schema";
 import bcrypt from "bcryptjs";
 import z from "zod";
 import { userSchema } from "./types";
+import Razorpay from "razorpay";
+
 type UserType = z.infer<typeof userSchema>;
 export async function uploadImageToCloud(
   image: any,
@@ -68,3 +70,24 @@ export const findUserByEmail = async (email: string) => {
   const user = await User.findOne({ email }).exec();
   return user;
 };
+
+export function verifyPaymentId(paymentId: string) {
+  const razorpay = new Razorpay({
+    key_id: "YOUR_API_KEY",
+    key_secret: "YOUR_API_SECRET",
+  });
+
+  razorpay.payments
+    .fetch(paymentId)
+    .then((paymentDetails) => {
+      console.log(paymentDetails);
+      // You can now extract and use the customer's email and phone number
+      const email = paymentDetails.email;
+      const contact = paymentDetails.contact;
+      // Link this payment to your user based on these details
+    })
+    .catch((error) => {
+      // Handle errors
+      console.error(error);
+    });
+}

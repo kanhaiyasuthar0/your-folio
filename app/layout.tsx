@@ -8,6 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import HoliOfferBanner from "@/components/generics/HoliOfferBanner";
+import { Toaster } from "@/components/ui/toaster";
 // export const metadata: Metadata = {
 //   title: "Your-Folio",
 //   description: "Your Folio App lets you showcase your real ability",
@@ -59,6 +60,7 @@ export default async function RootLayout({
           <footer>
             <Footer />
           </footer>
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>

@@ -1,20 +1,52 @@
+"use client";
+import getUserData from "@/actions/getUserDataFromExternalId.action";
 import { submitProfile } from "@/actions/submitAdminProfile.action";
 import Button from "@/components/generics/Button";
+import { useToast } from "@/components/ui/use-toast";
 import dbConnect from "@/database/mongodb/connections/dbConnect";
 import AdminProfile from "@/database/mongodb/models/user/admin.schema";
 import User from "@/database/mongodb/models/user/user.schema";
+import { useUser } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/dist/server/api-utils";
+import { useEffect, useState } from "react";
+import { useFormState } from "react-dom";
 import { toast } from "react-toastify";
 
-const Profile = async () => {
-  const user = await currentUser();
-  await dbConnect();
-  const profileData = await AdminProfile.findOne({ user: user?.id });
-  console.log("🚀 ~ Profile ~ profileData1:", profileData);
-  const userData = await User.findOne({ external_id: user?.id });
-  console.log("🚀 ~ Profile ~ userData: profile top", userData);
+const Profile = () => {
+  const { toast } = useToast();
+  const [state, formAction] = useFormState(submitProfile, null);
+  const { isSignedIn, user } = useUser();
+  console.log("🚀 ~ Profile ~ user:", user);
+  const [profileData, setProfileData] = useState({
+    companyName: "",
+    displayName: "",
+    personalDescription: "",
+    companyDescription: "",
+    themeColor: "",
+    companyAddress: "",
+    status: "",
+    mobileNumber: "",
+    emailAddress: "",
+    youtubeVideoUrl: "",
+    quotation: "",
+    socialAccounts: {
+      facebook: "",
+      twitter: "",
+      linkedin: "",
+      // instagram: formData.get("social.instagram"),
+      // Include other platforms as needed
+    },
+    profilePicture: "", // Assuming this is a file input's name attribute
+  });
+  // const user = await currentUser();
+  // await dbConnect();
+
+  // const profileData = await AdminProfile.findOne({ user: user?.id });
+  // // console.log("🚀 ~ Profile ~ profileData1:", profileData);
+  // const userData = await User.findOne({ external_id: user?.id });
+  // console.log("🚀 ~ Profile ~ userData: profile top", userData);
   //   const [formData, setFormData] = useState({
   //     companyName: "",
   //     displayName: "",
@@ -47,20 +79,47 @@ const Profile = async () => {
   //     }));
   //   };
 
+  async function getData() {
+    const response = await getUserData(user?.id!);
+    console.log("🚀 ~ getData ~ response:", response);
+    setProfileData(response);
+  }
+
+  useEffect(() => {
+    getData();
+    if (state?.error) {
+      toast({
+        title: "Error in submitting the form",
+        description: JSON.stringify(state.response),
+      });
+    } else {
+      toast({
+        title: "Profile updated!",
+        description: "Changes are saved successfully",
+      });
+    }
+  }, [JSON.stringify(state), user]);
+  if (!isSignedIn) {
+    return null;
+  }
+
   const handleSubmit = async (formData: FormData) => {
-    "use server";
-    const response = await submitProfile(formData);
-    console.log("🚀 ~ handleSubmit ~ response:123", response);
+    // "use server";
+    // const response = await submitProfile(formData);
+    // console.log("🚀 ~ handleSubmit ~ response:123", response);
+    // if (response.error) {
+    // } else {
+    //   // revalidatePath(`/showcase/folioUsers/${userData?._id}`);
+    // }
     // toast.success("Profile updated successfully!");
-    console.log(userData, "inhandlesubmit after");
-    revalidatePath(`/showcase/folioUsers/${userData?._id}`);
+    // console.log(userData, "inhandlesubmit after");
     // redirect("/admin")
     // Submit form logic here
   };
 
   return (
     <div className="bg-white shadow rounded-lg p-6 lg:p-8 my-6 mx-4 md:mx-8">
-      <form action={handleSubmit} className="space-y-6">
+      <form action={formAction} method="POST" className="space-y-6">
         <h2 className="text-2xl font-semibold text-gray-900">
           Profile Settings
         </h2>
@@ -95,6 +154,7 @@ const Profile = async () => {
             name="personalDescription"
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             rows={3}
+            minLength={10}
           ></textarea>
         </div>
         <div>
@@ -193,21 +253,21 @@ const Profile = async () => {
               Social Accounts
             </label>
             <input
-              defaultValue={profileData?.socialAccounts["facebook"]}
+              defaultValue={profileData?.socialAccounts?.facebook ?? ""}
               name="socialAccounts[facebook]"
               placeholder="Facebook URL"
               type="text"
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             />
             <input
-              defaultValue={profileData?.socialAccounts["twitter"]}
+              defaultValue={profileData?.socialAccounts?.twitter ?? ""}
               name="socialAccounts[twitter]"
               placeholder="Twitter URL"
               type="text"
               className="mt-4 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             />
             <input
-              defaultValue={profileData?.socialAccounts["linkedin"]}
+              defaultValue={profileData?.socialAccounts?.linkedin ?? ""}
               name="socialAccounts[linkedin]"
               placeholder="LinkedIn URL"
               type="text"
@@ -226,6 +286,7 @@ const Profile = async () => {
             />
           </div>
         </div>
+        {/* <div>{JSON.stringify(state, null)}</div> */}
         <div className="flex justify-end">
           <Button text="Save Changes" />
 
