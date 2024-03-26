@@ -27,11 +27,11 @@ const adminProfileSchema = z.object({
   displayName: z.string().optional(),
   personalDescription: z
     .string()
-    .min(1, "Personal description is required")
+    .min(0, "Personal description is required")
     .optional(),
   companyDescription: z
     .string()
-    .min(1, "Company description is required")
+    .min(0, "Company description is required")
     .optional(),
   themeColor: z.string().optional(), // Assuming HEX color code
   companyAddress: z.string().optional(),
@@ -44,7 +44,7 @@ const adminProfileSchema = z.object({
   profilePicture: z.any().optional(), // Assuming it's a URL to the picture
 });
 
-export const submitProfile = async (formData: FormData) => {
+export const submitProfile = async (state: any, formData: FormData) => {
   const user = await currentUser();
 
   console.log("🚀 ~ submitFolio ~ user:", user);
@@ -52,6 +52,7 @@ export const submitProfile = async (formData: FormData) => {
     // Connect to the database
     await dbConnect();
 
+    console.log("🚀 ~ submitProfile ~ formData:", formData);
     const profileData = {
       companyName: formData.get("companyName"),
       displayName: formData.get("displayName"),
@@ -108,14 +109,15 @@ export const submitProfile = async (formData: FormData) => {
       console.log("🚀 ~ submitProfile ~ profile:", profile);
 
       // Return the saved event object
-      return profile;
+      // return profile;
+      return { error: false, response: profile };
     } else {
       // Handle validation errors
       console.error(result.error.issues);
-      throw result.error.issues; // Rethrow or handle error as appropriate
+      return { error: true, response: result.error.issues }; // Rethrow or handle error as appropriate
     }
   } catch (error) {
     console.error("Failed to post event:", error);
-    throw error; // Rethrow or handle error as appropriate
+    return { error: true, response: "Something went wrong!" };
   }
 };
