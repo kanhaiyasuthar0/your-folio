@@ -10,6 +10,12 @@ import { GroupIcon } from "@radix-ui/react-icons"; // Team Management
 import { StarIcon } from "@radix-ui/react-icons"; // Testimonials
 import { GearIcon } from "@radix-ui/react-icons"; // Settings// Logout
 import Button from "@/components/generics/Button";
+import dbConnect from "@/database/mongodb/connections/dbConnect";
+import RazorPayWebhook from "@/database/mongodb/models/user/payment.schema";
+import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import { Suspense } from "react";
+import Loader from "@/components/generics/Loader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -40,11 +46,25 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AdminPageLayout({
+export default async function AdminPageLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  await dbConnect();
+
+  const user = await currentUser();
+  console.log("🚀 ~ user:123", user?.emailAddresses[0]?.emailAddress);
+  const response = await RazorPayWebhook.findOne({
+    email: user?.emailAddresses[0]?.emailAddress,
+  });
+  console.log("🚀 ~ response:", response);
+
+  if (!response) {
+    // currently allowing all
+    // redirect("/services"); // Use the router to redirect
+  }
+
   return (
     <>
       {/* <main className="min-h-96">{}</main> */}
@@ -148,8 +168,9 @@ export default function AdminPageLayout({
             </div>
           </aside>
         </div>
-
-        <div style={{ flex: 2 }}>{children}</div>
+        <Suspense fallback={<Loader />}>
+          <div style={{ flex: 2 }}>{children}</div>
+        </Suspense>
       </section>
       {/* <section> {} </section>
       <section></section> */}
