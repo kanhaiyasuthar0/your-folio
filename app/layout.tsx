@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import HoliOfferBanner from "@/components/generics/HoliOfferBanner";
 import { Toaster } from "@/components/ui/toaster";
+// import { Analytics } from "@vercel/analytics/react";
 // export const metadata: Metadata = {
 //   title: "Your-Folio",
 //   description: "Your Folio App lets you showcase your real ability",
@@ -49,6 +50,7 @@ export default async function RootLayout({
   // const adminData = await AdminProfile.findOne({user : })
   return (
     <ClerkProvider>
+      {/* <Analytics> */}
       <html lang="en">
         <body className={inter.className}>
           <header>
@@ -62,7 +64,13 @@ export default async function RootLayout({
           </footer>
           <Toaster />
         </body>
+        <script
+          defer
+          src="https://analytics.us.umami.is/script.js"
+          data-website-id="876c46db-2ebf-40ea-bb86-df1bfa6fef1e"
+        ></script>
       </html>
+      {/* </Analytics> */}
     </ClerkProvider>
   );
 }
