@@ -1,7 +1,9 @@
 import CreatePdfFromTabel from "@/components/admin/CreatePdfFromTabel";
 import dbConnect from "@/database/mongodb/connections/dbConnect";
 import ShowCase from "@/database/mongodb/models/showcase/showcase.schema";
+import RazorPayWebhook from "@/database/mongodb/models/user/payment.schema";
 import { currentUser } from "@clerk/nextjs/server";
+import { formatDistanceToNow } from "date-fns";
 import Link from "next/link";
 import React from "react";
 
@@ -44,6 +46,10 @@ const Dashboard = async () => {
       },
     },
   ]);
+  console.log("🚀 ~ user:123", user?.emailAddresses[0]?.emailAddress);
+  const response = await RazorPayWebhook.findOne({
+    email: user?.emailAddresses[0]?.emailAddress,
+  });
   const result =
     counts.length > 0 ? counts[0] : { totalDocuments: 0, totalImages: 0 };
   const statsData = [
@@ -51,7 +57,18 @@ const Dashboard = async () => {
     { label: "Team members", value: "0" },
     { label: "Total testimonials", value: "0" },
     { label: "Total number of images", value: result.totalImages },
-    { label: "Plan active", value: "Advance" },
+    {
+      label: "Plan",
+      value: response?.paymentRecords?.at(-1)?.plan ?? "Free",
+    },
+    {
+      label: "Purchased on",
+      value: response
+        ? new Date(
+            response?.paymentRecords?.at(-1)?.createdAt
+          ).toLocaleDateString("en-GB")
+        : "Free",
+    },
   ];
 
   return (
@@ -70,7 +87,9 @@ const Dashboard = async () => {
                 <h2 className="text-lg font-semibold text-gray-700">
                   {stat.label}
                 </h2>
-                <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
+                <p className="text-2xl font-bold text-gray-900 capitalize">
+                  {stat.value}
+                </p>
               </div>
             ))}
             {/* Revenue Chart Placeholder */}
