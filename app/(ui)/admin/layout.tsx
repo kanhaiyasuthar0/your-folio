@@ -62,7 +62,7 @@ export default async function AdminPageLayout({
 
   if (!response) {
     // currently allowing all
-    // redirect("/services"); // Use the router to redirect
+    redirect("/services"); // Use the router to redirect
   }
 
   return (

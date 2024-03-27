@@ -22,7 +22,7 @@ export const HoverEffect = ({
   className?: string;
 }) => {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
+  console.log(items, className, "here123");
   return (
     <div
       className={cn(
@@ -65,7 +65,7 @@ export const HoverEffect = ({
               height={300}
             />
             <CardTitle>
-              {item.all_info?.first_name + item?.all_info?.last_name}
+              {item?.all_info?.first_name + item?.all_info?.last_name}
             </CardTitle>
             <CardDescription>{item?.email}</CardDescription>
           </Card>
