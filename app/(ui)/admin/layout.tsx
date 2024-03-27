@@ -55,15 +55,16 @@ export default async function AdminPageLayout({
 
   const user = await currentUser();
   console.log("🚀 ~ user:123", user?.emailAddresses[0]?.emailAddress);
+  let email = user?.emailAddresses[0]?.emailAddress;
   const response = await RazorPayWebhook.findOne({
-    email: user?.emailAddresses[0]?.emailAddress,
+    email,
   });
   console.log("🚀 ~ response:", response);
-
-  if (!response) {
-    // currently allowing all
-    redirect("/services"); // Use the router to redirect
-  }
+  // let freeUsers = [""]
+  // if (email == !response) {
+  // currently allowing all
+  // redirect("/services"); // Use the router to redirect
+  // }
 
   return (
     <>
