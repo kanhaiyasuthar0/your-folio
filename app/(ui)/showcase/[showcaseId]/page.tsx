@@ -236,7 +236,7 @@ const ShowCaseDetailPage = async ({ params }: any) => {
       <div className="text-center">
         <>
           <Link
-            href={`/showcase/folioUsers/${userData._id}`}
+            href={`/showcase/folioUsers/${userData?._id}`}
             className="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg"
           >
             More from this creator
