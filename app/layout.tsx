@@ -63,12 +63,12 @@ export default async function RootLayout({
             <Footer />
           </footer>
           <Toaster />
+          <script
+            defer
+            src="https://analytics.us.umami.is/script.js"
+            data-website-id="876c46db-2ebf-40ea-bb86-df1bfa6fef1e"
+          ></script>
         </body>
-        <script
-          defer
-          src="https://analytics.us.umami.is/script.js"
-          data-website-id="876c46db-2ebf-40ea-bb86-df1bfa6fef1e"
-        ></script>
       </html>
       {/* </Analytics> */}
     </ClerkProvider>
