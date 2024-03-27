@@ -30,10 +30,10 @@ export const HoverEffect = ({
         className
       )}
     >
-      {items.map((item, idx) => (
+      {items?.map((item, idx) => (
         <Link
-          href={`/showcase/folioUsers/${item._id}`}
-          key={item?.all_info.profile_image_url}
+          href={`/showcase/folioUsers/${item?._id}`}
+          key={item?.all_info?.profile_image_url}
           className="relative group  block p-2 h-full w-full"
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
@@ -58,16 +58,16 @@ export const HoverEffect = ({
           </AnimatePresence>
           <Card>
             <Image
-              src={item.all_info.profile_image_url}
-              alt={item.username}
+              src={item?.all_info.profile_image_url}
+              alt={item?.username}
               className="w-full h-48 object-cover"
               width={300}
               height={300}
             />
             <CardTitle>
-              {item.all_info?.first_name + item.all_info?.last_name}
+              {item.all_info?.first_name + item?.all_info?.last_name}
             </CardTitle>
-            <CardDescription>{item.email}</CardDescription>
+            <CardDescription>{item?.email}</CardDescription>
           </Card>
         </Link>
       ))}
