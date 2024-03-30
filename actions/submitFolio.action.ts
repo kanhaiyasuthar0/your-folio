@@ -31,7 +31,7 @@ const folioSchema = z.object({
   budget: z.string().optional(),
   clientName: z.string().optional(),
   clientPhone: z.string().optional(),
-});
+}); 
 
 export const submitFolio = async (formData: FormData) => {
   const user = await currentUser();

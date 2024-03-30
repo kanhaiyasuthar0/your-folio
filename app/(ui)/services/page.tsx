@@ -4,19 +4,19 @@ import React from "react";
 const Services = () => {
   // List of service plans
   const plans = [
-    {
-      id: 1,
-      name: "Basic Site",
-      price: 99,
-      features: [
-        "Admin Panel",
-        "Secured",
-        "1000 images",
-        "Community Access",
-        "No Video Support",
-        "No Requirements Access",
-      ],
-    },
+    // {
+    //   id: 1,
+    //   name: "Basic Site",
+    //   price: 99,
+    //   features: [
+    //     "Admin Panel",
+    //     "Secured",
+    //     "1000 images",
+    //     "Community Access",
+    //     "No Video Support",
+    //     "No Requirements Access",
+    //   ],
+    // },
     {
       id: 2,
       name: "Complete Site",
@@ -40,6 +40,22 @@ const Services = () => {
     <div className="container mx-auto px-4 py-8">
       <h2 className="text-3xl font-bold text-center mb-6">Our Services</h2>
       <div className="flex flex-wrap justify-center -mx-4">
+        <AnimatedPinDemo
+          key={0}
+          plan={{
+            id: 0,
+            name: "Free",
+            price: 0,
+            features: [
+              "Admin Panel",
+              "Secured",
+              "1000 images",
+              "Community Access",
+              "No Video Support",
+              "No Requirements Access",
+            ],
+          }}
+        />
         {plans.map((plan, index) => (
           // <div key={plan.id} className="w-full md:w-1/2 lg:w-1/3 px-4 mb-6">
           //   <div className="border rounded-lg shadow-lg p-6">
