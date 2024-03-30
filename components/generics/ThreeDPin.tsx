@@ -80,6 +80,9 @@ export function AnimatedPinDemo(props: any) {
   async function handleRazorPay(formData: FormData, price: number) {
     // "use server";
     // console.log("🚀 ~ handleRazorPay ~ formData:", formData);
+    if (price == 0) {
+      redirect("/admin/dashboard");
+    }
     const response = await actionRazorPay(price);
     console.log("🚀 ~ handleRazorPay ~ response14:", response);
     // window.open(response);
