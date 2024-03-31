@@ -93,7 +93,7 @@ const Navbar = () => {
                 </span>
               </Link>
               {!isSignedIn && !user && (
-                <Link href="/admin/get-started-doc">
+                <Link href="/get-started-doc">
                   <span className="px-4 py-2 rounded bg-indigo-500 hover:bg-indigo-600 text-white cursor-pointer">
                     Get Started
                   </span>
