@@ -93,7 +93,7 @@ const Navbar = () => {
                 </span>
               </Link>
               {!isSignedIn && !user && (
-                <Link href="/admin/dashboard">
+                <Link href="/admin/get-started-doc">
                   <span className="px-4 py-2 rounded bg-indigo-500 hover:bg-indigo-600 text-white cursor-pointer">
                     Get Started
                   </span>
@@ -209,7 +209,7 @@ const Navbar = () => {
                 </SignedIn>
               </li>
               <li>
-                <Link href="/admin/dashboard">
+                <Link href="/get-started-doc">
                   <span className="block text-sm px-2 py-4 hover:bg-gray-800 text-indigo-500 cursor-pointer">
                     Get Started
                   </span>
