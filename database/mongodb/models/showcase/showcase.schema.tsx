@@ -16,12 +16,16 @@ const showcaseSchema = new Schema(
     description: String,
     images: [String], // Array of image URLs
     tags: [String], // Optional tags for better searchability
-    type: { type: String, ref: "Type", required: true },
+    type: {
+      type: String,
+      ref: "Type",
+      required: false,
+    },
     category: String,
     visibility: {
       type: String,
       enum: ["private", "public"],
-      required: true,
+      default: "public",
     },
   },
   { timestamps: true }
