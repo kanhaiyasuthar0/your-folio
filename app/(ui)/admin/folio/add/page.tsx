@@ -1,4 +1,5 @@
 "use client";
+import actionPath from "@/actions/revalidator.action";
 import { submitFolio } from "@/actions/submitFolio.action";
 import Button from "@/components/generics/Button";
 import { Input } from "@/components/ui/input";
@@ -24,9 +25,9 @@ const AddFolio = () => {
 
   async function submitAction(formData: FormData) {
     await submitFolio(formData);
-    // revalidatePath("/showcase");
+    await actionPath("/showcase");
     // revalidatePath(`/showcase/folioUsers/`);
-    revalidatePath("/admin/folio");
+    await actionPath("/admin/folio");
     redirect("/admin/folio");
   }
 
