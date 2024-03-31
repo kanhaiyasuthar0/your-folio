@@ -16,6 +16,7 @@ const nextConfig = {
       "www.gravatar.com",
       "saisolutions.vercel.app",
       "img.clerk.com",
+      "content.jdmagicbox.com",
     ],
   },
 };
