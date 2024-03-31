@@ -8,7 +8,6 @@ import React, { FormEvent } from "react";
 
 const AddFolio = () => {
   async function submitAction(formData: FormData) {
-    "use server";
     await submitFolio(formData);
     revalidatePath("/showcase");
     // revalidatePath(`/showcase/folioUsers/`);
