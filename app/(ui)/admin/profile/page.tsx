@@ -92,7 +92,7 @@ const Profile = () => {
         title: "Error in submitting the form",
         description: JSON.stringify(state.response),
       });
-    } else {
+    } else if (state?.error == false && state?.response) {
       toast({
         title: "Profile updated!",
         description: "Changes are saved successfully",

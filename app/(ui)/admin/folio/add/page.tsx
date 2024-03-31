@@ -1,178 +1,169 @@
 "use client";
 import { submitFolio } from "@/actions/submitFolio.action";
-import { currentUser } from "@clerk/nextjs/server";
+import Button from "@/components/generics/Button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+// import { Input, Textarea } from "@chakra-ui/react";
+// import { currentUser } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import React, { FormEvent } from "react";
+// import { useFormState } from "react-dom";
 
 const AddFolio = () => {
+  // const [state, formAction] = useFormState(submitProfile, null);
+
   async function submitAction(formData: FormData) {
     await submitFolio(formData);
-    revalidatePath("/showcase");
+    // revalidatePath("/showcase");
     // revalidatePath(`/showcase/folioUsers/`);
     revalidatePath("/admin/folio");
     redirect("/admin/folio");
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-2xl w-full space-y-8 bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-center text-3xl font-extrabold text-gray-900">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
+      <div className="w-full max-w-4xl bg-white rounded-lg shadow-md p-6 space-y-4">
+        <h2 className="text-2xl font-semibold text-center text-gray-900">
           Add a New Folio
         </h2>
-        <form className="mt-8 space-y-6" action={submitAction}>
-          <div className="rounded-md shadow-sm space-y-4">
-            <input
+        <form className="space-y-6 text-white" action={submitAction}>
+          <div className="grid grid-cols-1 gap-4">
+            <Input
               type="text"
               name="title"
               required
               placeholder="Title"
-              // value={formData.title}
-              // onChange={handleChange}
-              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              className="form-input"
             />
-            <textarea
+            <Textarea
               name="description"
               rows={4}
+              required
               placeholder="Description"
-              // value={formData.description}
-              // onChange={handleChange}
-              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-            ></textarea>
-            <input
+              className="form-textarea"
+            ></Textarea>
+
+            <div className="grid w-full max-w-sm items-center gap-1.5">
+              <Label htmlFor="picture">Picture</Label>
+              <Input required name="images" id="picture" type="file" />
+            </div>
+            {/* <input
               type="file"
               name="images"
               multiple
-              // onChange={handleChange}
-              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              required
+              className="form-input"
+            /> */}
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <Input
+              type="text"
+              name="address.street"
+              required
+              placeholder="Street"
+              className="form-input"
             />
-            <div>
-              <input
-                type="text"
-                name="address.street"
-                placeholder="Street"
-                // value={formData.address.street}
-                // onChange={handleChange}
-                className="input"
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="address.city"
-                placeholder="City"
-                // value={formData.address.city}
-                // onChange={handleChange}
-                className="input"
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="address.state"
-                placeholder="State"
-                // value={formData.address.state}
-                // onChange={handleChange}
-                className="input"
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="address.zipCode"
-                placeholder="Zip Code"
-                // value={formData.address.zipCode}
-                // onChange={handleChange}
-                className="input"
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="address.country"
-                placeholder="Country"
-                // value={formData.address.country}
-                // onChange={handleChange}
-                className="input"
-              />
-            </div>
-            <input
+            <Input
+              type="text"
+              name="address.city"
+              required
+              placeholder="City"
+              className="form-input"
+            />
+          </div>
+          <div className="grid grid-cols-3 gap-4">
+            <Input
+              type="text"
+              name="address.state"
+              required
+              placeholder="State"
+              className="form-input"
+            />
+            <Input
+              type="text"
+              name="address.zipCode"
+              required
+              placeholder="Zip Code"
+              className="form-input"
+            />
+            <Input
+              type="text"
+              name="address.country"
+              required
+              placeholder="Country"
+              className="form-input"
+            />
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <Input
               type="text"
               name="tags"
               placeholder="Tags (comma-separated)"
-              // value={formData.tags}
-              // onChange={handleChange}
-              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              className="form-input"
             />
-            <input
+            <Input
               type="text"
               name="category"
               placeholder="Category"
-              // value={formData.category}
-              // onChange={handleChange}
-              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              className="form-input"
             />
-            <input
+            <Input
               type="date"
               name="completionDate"
+              required
               placeholder="Completion Date"
-              // value={formData.completionDate}
-              // onChange={handleChange}
-              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              className="form-input"
             />
-            <select
-              name="status"
-              // value={formData.status}
-              // onChange={handleChange}
-              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-            >
-              <option value="">Select Status</option>
+            <Select name="status">
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Select Status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="ongoing">Ongoing</SelectItem>
+                <SelectItem value="completed">Completed</SelectItem>
+              </SelectContent>
+            </Select>
+
+            {/* <select name="status" required className="form-select">
+              <option value=""></option>
               <option value="ongoing">Ongoing</option>
               <option value="completed">Completed</option>
             </select>
-            <select
-              name="visibility"
-              // value={formData.visibility}
-              // onChange={handleChange}
-              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-            >
+            <select name="visibility" required className="form-select">
               <option value="">Visibility</option>
               <option value="private">Private</option>
               <option value="public">Public</option>
-            </select>
-            <input
+            </select> */}
+            <Input
               type="text"
               name="budget"
               placeholder="Budget"
-              // value={formData.budget}
-              // onChange={handleChange}
-              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              className="form-input"
             />
-            <input
+            <Input
               type="text"
               name="client-name"
               placeholder="Client name"
-              // value={formData.contactInfo}
-              // onChange={handleChange}
-              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              className="form-input"
             />
-            <input
+            <Input
               type="text"
               name="client-phone"
               placeholder="Client Phone"
-              // value={formData.contactInfo}
-              // onChange={handleChange}
-              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              className="form-input"
             />
-            {/* Add more fields as necessary */}
           </div>
-          <button
-            type="submit"
-            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Submit
-          </button>
+          <Button text="Submit"></Button>
         </form>
       </div>
     </div>

@@ -31,7 +31,7 @@ const folioSchema = z.object({
   budget: z.string().optional(),
   clientName: z.string().optional(),
   clientPhone: z.string().optional(),
-}); 
+});
 
 export const submitFolio = async (formData: FormData) => {
   const user = await currentUser();
@@ -56,7 +56,7 @@ export const submitFolio = async (formData: FormData) => {
         ?.split(",")
         .map((tag: string) => tag.trim()),
       category: formData.get("category"),
-      visibility: formData.get("visibility"),
+      visibility: formData.get("visibility") || "public",
       address: {
         street: getOrUndefined(formData.get("address.street")),
         city: getOrUndefined(formData.get("address.city")),
@@ -96,16 +96,17 @@ export const submitFolio = async (formData: FormData) => {
     console.log(eventData, "eventData");
 
     // Create a new event instance and save it to the database
-    const event = new ShowCase({
+    const event = await new ShowCase({
       ...eventData,
       user: user?.id,
       projectName: eventData.title,
     });
     console.log("🚀 ~ eventPost ~ event:", event);
     const savedEvent = await event.save();
+    console.log("🚀 ~ submitFolio save completed ~ savedEvent:", savedEvent);
 
     // Return the saved event object
-    return savedEvent;
+    return JSON.stringify(savedEvent);
   } catch (error) {
     console.error("Failed to post event:", error);
     throw error; // Rethrow or handle error as appropriate
