@@ -12,7 +12,7 @@ import { usePathname } from "next/navigation";
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isPathMatch, setIsPathMatch] = useState(false);
-  const pathname = usePathname();
+  const pathname = usePathname()!;
   const regex = /^\/showcase\/folioUsers\/.*$/;
   // const regex = /^\/showcase(?:\/folioUsers\/[^/]+\/.*)?$/;
   const { isSignedIn, user } = useUser();
