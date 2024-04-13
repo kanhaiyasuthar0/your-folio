@@ -81,14 +81,13 @@ export const submitFolio = async (formData: FormData) => {
     const title = formData.get("title");
     // console.log(title, "title");
     // console.log(user, "user");
-    const promises = await images
-      .slice(0, 10)
-      .map((image: any, index: number) =>
-        uploadImageToCloud(
-          image,
-          `${title}-${user?.fullName}-your-folio` ?? "unknown-your-folio"
-        )
-      );
+    // .slice(0, 10)
+    const promises = await images.map((image: any, index: number) =>
+      uploadImageToCloud(
+        image,
+        `${title}-${user?.fullName}-your-folio` ?? "unknown-your-folio"
+      )
+    );
 
     const uploadedImageLinks = await Promise.all(promises);
     eventData["images"] = uploadedImageLinks;
