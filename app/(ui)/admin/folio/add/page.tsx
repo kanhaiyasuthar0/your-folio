@@ -56,7 +56,7 @@ const AddFolio = () => {
 
             <div className="grid w-full max-w-sm items-center gap-1.5">
               <Label htmlFor="picture">Picture</Label>
-              <Input required name="images" id="picture" type="file" />
+              <Input required name="images" id="picture" type="file" multiple />
             </div>
             {/* <input
               type="file"
