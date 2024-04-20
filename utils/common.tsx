@@ -3,11 +3,11 @@ import dbConnect from "@/database/mongodb/connections/dbConnect";
 import User from "@/database/mongodb/models/user/user.schema";
 import bcrypt from "bcryptjs";
 import z from "zod";
+
 import { userSchema } from "./types";
 import Razorpay from "razorpay";
 
 import { v2 as cloudinary } from "cloudinary";
-import crypto from "crypto";
 
 cloudinary.config({
   cloud_name: process.env.NEXT_CLOUD_NAME,
@@ -15,6 +15,7 @@ cloudinary.config({
   api_secret: process.env.NEXT_SECRET_KEY,
 });
 
+import crypto from "crypto";
 type UserType = z.infer<typeof userSchema>;
 export async function uploadImageToCloud(
   image: any,
@@ -40,6 +41,46 @@ export async function uploadImageToCloud(
     return data.url;
   } catch (error) {
     console.error("Error uploading image:", error);
+    throw error;
+  }
+}
+
+function generateSignature(params: any, apiSecret: any) {
+  const stringToSign = Object.keys(params)
+    .sort()
+    .map((key) => `${key}=${params[key]}`)
+    .join("&");
+
+  return crypto
+    .createHash("sha256")
+    .update(stringToSign)
+    .update(apiSecret)
+    .digest("hex");
+}
+
+function extractPublicId(url: string) {
+  const decodedUrl = decodeURIComponent(url);
+  const urlParts = decodedUrl.split("/");
+
+  const indexAfterUpload = urlParts.indexOf("upload") + 2; // Skip 'upload' and version
+  const publicIdWithExtension = urlParts.slice(indexAfterUpload).join("/");
+
+  return publicIdWithExtension.replace(/\.[^/.]+$/, ""); // Remove extension
+}
+
+export async function deleteImageFromCloudinary(url: any) {
+  const publicId = extractPublicId(url);
+  // "JP%20Nagar%20Site%20Goregaon%20%28Mumbai%29-Kanhaiya%20Suthar-your-folio/l6i0kvuoyuqorwwftxin";
+  console.log("🚀 ~ deleteImageFromCloudinary ~ publicId:", publicId);
+
+  try {
+    const result = await cloudinary.uploader.destroy(publicId, {
+      invalidate: true,
+    });
+    console.log("Delete result:", result);
+    return true;
+  } catch (error) {
+    console.error("Error deleting image from Cloudinary:", error);
     throw error;
   }
 }

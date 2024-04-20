@@ -1,7 +1,15 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, ReactNode } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/utils/cn";
+
+type PinContainerProps = {
+  children: React.ReactNode;
+  title?: string;
+  href?: string;
+  className?: string;
+  containerClassName?: string;
+};
 
 export const PinContainer = ({
   children,
@@ -9,13 +17,7 @@ export const PinContainer = ({
   href,
   className,
   containerClassName,
-}: {
-  children: React.ReactNode;
-  title?: string;
-  href?: string;
-  className?: string;
-  containerClassName?: string;
-}) => {
+}: PinContainerProps): ReactNode => {
   const [transform, setTransform] = useState(
     "translate(-50%,-50%) rotateX(40deg) scale(0.8)"
   );
@@ -52,6 +54,8 @@ export const PinContainer = ({
           <div className={cn(" relative z-50 ", className)}>{children}</div>
         </div>
       </div>
+      {/* 
+// @ts-ignore */}
       <PinPerspective title={""} href={""} />
     </div>
   );
@@ -64,6 +68,7 @@ export const PinPerspective = ({
   title?: string;
   href?: string;
 }) => {
+  console.log("some");
   return (
     <motion.div className="pointer-events-none  w-96 h-80 flex items-center justify-center opacity-0 group-hover/pin:opacity-100 z-[60] transition duration-500">
       <div className="w-full h-full -mt-7 flex-none  inset-0">
