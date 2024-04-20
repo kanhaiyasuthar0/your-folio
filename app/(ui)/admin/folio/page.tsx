@@ -7,10 +7,9 @@ import dbConnect from "@/database/mongodb/connections/dbConnect";
 import { formatDistanceToNow } from "date-fns";
 import Button from "@/components/generics/Button";
 import { revalidatePath } from "next/cache";
-import { updateFolioData } from "@/actions/updatingShowcase.action";
 
 const FolioItemCard = ({ data }: any) => {
-  const { id, projectName, description, images, createdAt, coverImage } = data;
+  const { id, projectName, description, images, createdAt } = data;
 
   console.log("🚀 ~ FolioItemCard ~ description:", description);
   console.log("🚀 ~ FolioItemCard ~ projectName:", projectName);
@@ -37,7 +36,7 @@ const FolioItemCard = ({ data }: any) => {
     >
       <div className="relative w-full h-48">
         <Image
-          src={coverImage[0] || images[0] || "/default-image.jpg"}
+          src={images[0] || "/default-image.jpg"}
           alt={projectName}
           layout="fill"
           objectFit="cover"
@@ -46,16 +45,7 @@ const FolioItemCard = ({ data }: any) => {
       </div>
       <div className="p-6">
         <h2 className="text-xl font-semibold mb-2">{projectName}</h2>
-        <p
-          className="text-gray-700 text-sm mb-4 overflow-hidden text-ellipsis"
-          style={{
-            display: "-webkit-box",
-            WebkitLineClamp: 3,
-            WebkitBoxOrient: "vertical",
-          }}
-        >
-          {description}
-        </p>
+        <p className="text-gray-700 mb-4">{description}</p>
         <p className="text-sm text-gray-500 mb-4">
           Posted {formatDistanceToNow(new Date(createdAt))} ago
         </p>

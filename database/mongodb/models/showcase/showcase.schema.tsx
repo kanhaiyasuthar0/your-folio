@@ -3,7 +3,7 @@ import { Schema, models, model } from "mongoose";
 const showcaseSchema = new Schema(
   {
     user: { type: String, ref: "User", required: true },
-    projectName: { type: String, required: true, indexedDB : true },
+    projectName: { type: String, required: true },
     address: {
       street: String,
       city: String,
@@ -27,7 +27,6 @@ const showcaseSchema = new Schema(
       enum: ["private", "public"],
       default: "public",
     },
-    coverImage: [String],
   },
   { timestamps: true }
 );

@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import { PinContainer } from "../ui/3d-pin";
 import Link from "next/link";
@@ -96,8 +95,6 @@ export function AnimatedPinDemo(props: any) {
         key={props.plan.name}
       >
         {/* <Link href={`/payment/${props.plan.price == 99 ? "basic" : "advance"}`}> */}
-        {/* 
-// @ts-ignore */}
         <PinContainer
           title={`your-folio@ ₹${props.plan.price}`}
           href="www.google.com"
@@ -117,7 +114,8 @@ export function AnimatedPinDemo(props: any) {
 
             <div className="flex justify-center items-center w-full rounded-lg mt-4 bg-gradient-to-br from-violet-500 via-purple-500 to-blue-500 p-4">
               <form
-                action={(formData: FormData) =>
+                // onSubmit={(e) => handleSubmit(e, props.plan.price)}
+                action={(formData) =>
                   handleRazorPay(formData, props.plan.price)
                 }
                 className="w-full"
