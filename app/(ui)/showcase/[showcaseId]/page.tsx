@@ -149,7 +149,9 @@ const ShowCaseDetailPage = async ({ params }: any) => {
       <div
         className="hero-section bg-cover bg-center py-20 mb-8"
         style={{
-          backgroundImage: `url(${coverImage ? coverImage[0] : images[0]})`,
+          backgroundImage: `url(${
+            coverImage?.length > 0 ? coverImage[0] : images[0]
+          })`,
         }}
       >
         <div className="bg-black bg-opacity-50 p-6 rounded-md">
@@ -162,7 +164,7 @@ const ShowCaseDetailPage = async ({ params }: any) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
         {isOwner && <AddImagesToShowcaseForm showcaseId={showcaseId} />}
 
-        {images?.slice(1).map((image: string, index: string) => (
+        {images?.map((image: string, index: string) => (
           <div
             key={index}
             className="overflow-hidden rounded-lg shadow-lg relative"
