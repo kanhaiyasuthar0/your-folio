@@ -6,6 +6,15 @@ import z from "zod";
 import { userSchema } from "./types";
 import Razorpay from "razorpay";
 
+import { v2 as cloudinary } from "cloudinary";
+import crypto from "crypto";
+
+cloudinary.config({
+  cloud_name: process.env.NEXT_CLOUD_NAME,
+  api_key: process.env.NEXT_API_KEY,
+  api_secret: process.env.NEXT_SECRET_KEY,
+});
+
 type UserType = z.infer<typeof userSchema>;
 export async function uploadImageToCloud(
   image: any,
