@@ -1,13 +1,8 @@
-import { updateFolioData } from "@/actions/updatingShowcase.action";
 import dbConnect from "@/database/mongodb/connections/dbConnect";
 import ShowCase from "@/database/mongodb/models/showcase/showcase.schema";
 import User from "@/database/mongodb/models/user/user.schema";
 import Image from "next/image";
 import Link from "next/link";
-import ButtonCover from "./ButtonCover";
-import { currentUser } from "@clerk/nextjs/server";
-import DeleteButton from "./DeleteButton";
-import AddImagesToShowcaseForm from "@/components/admin/AddMoreImages";
 
 // Mock data for the example
 const showcaseData = {
@@ -131,26 +126,15 @@ const ShowCaseDetailPage = async ({ params }: any) => {
   await dbConnect();
   const showCaseDetail = await ShowCase.findOne({ _id: showcaseId });
   console.log("🚀 ~ ShowCaseDetailPage ~ showCaseDetail:", showCaseDetail);
-  const { images, description, projectName, user, coverImage } = showCaseDetail;
-  // console.log("🚀 ~ ShowCaseDetailPage ~ user:", user);
+  const { images, description, projectName, user } = showCaseDetail;
+
   const userData = await User.findOne({ external_id: user });
-
-  const currentLoggedInUser = await currentUser();
-  // console.log(
-  //   "🚀 ~ ShowCaseDetailPage ~ currentLoggedInUser:",
-  //   currentLoggedInUser
-  // );
-
-  const isOwner = currentLoggedInUser ? currentLoggedInUser.id == user : false;
-
   return (
     <div className="container max-w-6xl mx-auto p-6">
       {/* Hero Section with the first image as a backdrop */}
       <div
         className="hero-section bg-cover bg-center py-20 mb-8"
-        style={{
-          backgroundImage: `url(${coverImage ? coverImage[0] : images[0]})`,
-        }}
+        style={{ backgroundImage: `url(${images[0]})` }}
       >
         <div className="bg-black bg-opacity-50 p-6 rounded-md">
           <h1 className="text-4xl font-bold text-white mb-4">{projectName}</h1>
@@ -160,27 +144,15 @@ const ShowCaseDetailPage = async ({ params }: any) => {
 
       {/* Grid Display for Additional Images */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-        {isOwner && <AddImagesToShowcaseForm showcaseId={showcaseId} />}
-
-        {images?.slice(1).map((image: string, index: string) => (
-          <div
-            key={index}
-            className="overflow-hidden rounded-lg shadow-lg relative"
-            style={{ height: "300px" }} // Set a fixed height for each image container
-          >
+        {images?.slice(1).map((image: string, index: number) => (
+          <div key={index} className="overflow-hidden rounded-lg shadow-lg">
             <Image
-              layout="fill" // This makes the image fill its container
-              objectFit="cover" // Ensures the image covers the area without stretching
+              height={500}
+              width={500}
               src={image}
-              alt={`Showcase Image ${index + 2}`}
-              className="w-full h-full object-cover object-center"
+              alt={`Showcase ${index + 2}`}
+              className="w-full object-cover object-center"
             />
-            {isOwner && (
-              <div className="flex gap-2 justify-center absolute right-0 top-0 p-2">
-                <ButtonCover image={image} showCaseId={showcaseId} />
-                <DeleteButton image={image} showCaseId={showcaseId} />
-              </div>
-            )}
           </div>
         ))}
       </div>
