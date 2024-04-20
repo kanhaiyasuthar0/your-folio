@@ -54,7 +54,7 @@ export default async function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <header>
-            {/* <HoliOfferBanner /> */}
+            <HoliOfferBanner />
             <Navbar />
           </header>
           <main className="min-h-[42vw]">{children}</main>

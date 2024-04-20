@@ -169,16 +169,7 @@ export default async function AdminPageLayout({
             </div>
           </aside>
         </div>
-        <Suspense
-          fallback={
-            <div className="flex justify-center items-center h-screen w-full">
-              <div className="spinner"></div>
-              <p className="text-lg font-semibold text-gray-600 ml-4">
-                Loading Your Folio...
-              </p>
-            </div>
-          }
-        >
+        <Suspense fallback={<Loader />}>
           <div style={{ flex: 2 }}>{children}</div>
         </Suspense>
       </section>
