@@ -10,9 +10,9 @@ import Razorpay from "razorpay";
 import { v2 as cloudinary } from "cloudinary";
 
 cloudinary.config({
-  cloud_name: "dthmtmcvm",
-  api_key: "326396782584424",
-  api_secret: "djyvmSmaXCi3f4zmeyC85miCbw0",
+  cloud_name: process.env.NEXT_CLOUD_NAME,
+  api_key: process.env.NEXT_API_KEY,
+  api_secret: process.env.NEXT_SECRET_KEY,
 });
 
 import crypto from "crypto";
