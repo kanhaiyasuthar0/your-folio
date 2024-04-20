@@ -1,8 +1,6 @@
-import FilterSection from "@/components/generics/FilterSection";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import dbConnect from "@/database/mongodb/connections/dbConnect";
 import User from "@/database/mongodb/models/user/user.schema";
-import { FilterQuery } from "mongoose";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -34,25 +32,9 @@ import React from "react";
 //   // Add more users as needed
 // ];
 
-const FolioUsers = async ({
-  searchParams,
-}: {
-  searchParams: {
-    user: string;
-  };
-}) => {
+const FolioUsers = async () => {
   await dbConnect();
-
-  let query: FilterQuery<{ username?: string | null | undefined }> = {};
-  if (searchParams && searchParams.user) {
-    query.username = {
-      $regex: decodeURIComponent(searchParams.user).trim(),
-      $options: "i",
-    }; // 'i' for case-insensitive
-  }
-  const users = await User.find(query);
-
-  // console.log("🚀 ~ ShowCaseHome ~ showcaseItems:", username);
+  const users = await User.find({});
 
   return (
     // <div className="container mx-auto px-4 py-8">
@@ -64,7 +46,42 @@ const FolioUsers = async ({
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-wrap -mx-4">
         <aside className="w-full lg:w-1/4 px-4 mb-8 lg:mb-0">
-          <FilterSection stateKey={"user"} />
+          <div className="sticky top-0 p-4 bg-white shadow-lg rounded-lg">
+            <h2 className="text-xl font-semibold mb-4">Filters</h2>
+            <div className="mb-4">
+              <label htmlFor="search" className="sr-only">
+                Search
+              </label>
+              <input
+                type="text"
+                id="search"
+                className="w-full p-2 border border-gray-300 rounded-lg"
+                placeholder="Search..."
+              />
+            </div>
+            <div className="mb-4">
+              <h3 className="font-semibold mb-2">Date Range</h3>
+              <input
+                type="date"
+                className="w-full p-2 border border-gray-300 rounded-lg"
+              />
+              <span className="mx-2">to</span>
+              <input
+                type="date"
+                className="w-full p-2 border border-gray-300 rounded-lg"
+              />
+            </div>
+            <div className="mb-4">
+              <h3 className="font-semibold mb-2">Type</h3>
+              <select className="w-full p-2 border border-gray-300 rounded-lg">
+                <option value="">All Types</option>
+                <option value="photography">Photography</option>
+                <option value="design">Design</option>
+                <option value="art">Art</option>
+              </select>
+            </div>
+            {/* Additional filters as needed */}
+          </div>
         </aside>
         <main className="w-full lg:w-3/4 px-4">
           {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"> */}
