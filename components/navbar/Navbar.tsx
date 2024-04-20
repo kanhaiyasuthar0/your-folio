@@ -62,19 +62,28 @@ const Navbar = () => {
                   </span>
                 </Link>
               )}
-              <Link href="/about">
+
+              <Link href="/showcase">
                 <span className="hover:text-indigo-500 cursor-pointer">
-                  About
+                  Showcase
                 </span>
               </Link>
+
+              <Link href="/showcase/folioUsers">
+                <span className="hover:text-indigo-500 cursor-pointer">
+                  Community
+                </span>
+              </Link>
+
               <Link href="/services">
                 <span className="hover:text-indigo-500 cursor-pointer">
                   Services
                 </span>
               </Link>
-              <Link href="/showcase">
+
+              <Link href="/showcase/requirements">
                 <span className="hover:text-indigo-500 cursor-pointer">
-                  Showcase
+                  Requirements
                 </span>
               </Link>
               <Link href="/contact">
@@ -82,14 +91,9 @@ const Navbar = () => {
                   Contact
                 </span>
               </Link>
-              <Link href="/showcase/folioUsers">
+              <Link href="/about">
                 <span className="hover:text-indigo-500 cursor-pointer">
-                  Community
-                </span>
-              </Link>
-              <Link href="/showcase/requirements">
-                <span className="hover:text-indigo-500 cursor-pointer">
-                  Requirements
+                  About
                 </span>
               </Link>
               {!isSignedIn && !user && (
