@@ -96,7 +96,9 @@ const Folio = async () => {
   await dbConnect();
   const user = await currentUser();
   console.log("🚀 ~ Folio ~ user:", user);
-  const folioItems = await ShowCase.find({ user: user?.id });
+  const folioItems = await ShowCase.find({ user: user?.id }).sort({
+    createdAt: -1,
+  });
   console.log("🚀 ~ Folio ~ folioItems:", folioItems);
 
   return (

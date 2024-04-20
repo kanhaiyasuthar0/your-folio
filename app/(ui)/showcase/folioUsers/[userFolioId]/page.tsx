@@ -171,7 +171,9 @@ const FolioUsersDetailPage = async ({ params }: any) => {
   const adminProfilesWithUserDetails = await AdminProfile.findOne({
     user: mockUserData1.external_id,
   });
-  const showcases = await ShowCase.find({ user: mockUserData1.external_id });
+  const showcases = await ShowCase.find({
+    user: mockUserData1.external_id,
+  }).sort({ createdAt: -1 });
   console.log("🚀 ~ FolioUsersDetailPage ~ mockUserData1:", mockUserData1);
   const {
     all_info: {

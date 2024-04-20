@@ -29,7 +29,7 @@ const ShowCaseHome = async ({
       $options: "i",
     }; // 'i' for case-insensitive
   }
-  const showcaseItems = await ShowCase.find(query);
+  const showcaseItems = await ShowCase.find(query).sort({ createdAt: -1 });
   console.log("🚀 ~ ShowCaseHome ~ showcaseItems:", showcaseItems);
 
   return (

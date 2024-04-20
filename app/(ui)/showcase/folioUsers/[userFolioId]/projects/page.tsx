@@ -16,7 +16,9 @@ const folioUserProjects = async ({ params }: any) => {
   // const adminProfilesWithUserDetails = await AdminProfile.findOne({
   //   user: mockUserData1.external_id,
   // });
-  const showcases = await ShowCase.find({ user: mockUserData1?.external_id });
+  const showcases = await ShowCase.find({
+    user: mockUserData1?.external_id,
+  }).sort({ createdAt: -1 });
   return (
     <div className="max-w-screen-xl mx-auto">
       <div className="flex flex-wrap -mx-4">
